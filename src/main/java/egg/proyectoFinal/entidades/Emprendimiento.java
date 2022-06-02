@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -14,7 +15,7 @@ public class Emprendimiento {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_emprendimiento")
     private Long id;
 
     @Column(name = "nombre_emprendimiento", length = 50, nullable = false)
@@ -33,28 +34,33 @@ public class Emprendimiento {
     @Column(name = "direccion", length = 200, nullable = false)
     private String direccion;
 
-    @OneToMany(mappedBy = "nombreEmprendimiento")
-    private List<Producto>listaProducto;
-
     @Column(name = "telefono_emprendimiento")
     private int telefonoEmprendimiento;
 
     @Column(name = "instagram")
     private String instagram;
 
+    @ManyToOne(fetch = EAGER)
+    @JoinColumn(name = "emprendimiento_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "nombreEmprendimiento")
+    private List<Producto>listaProducto;
+
     public Emprendimiento() {
     }
 
-    public Emprendimiento(Long id, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, List<Producto> listaProducto, int telefonoEmprendimiento, String instagram) {
+    public Emprendimiento(Long id, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, int telefonoEmprendimiento, String instagram, Usuario usuario, List<Producto> listaProducto) {
         this.id = id;
         this.nombreEmprendimiento = nombreEmprendimiento;
         this.descripcionEmprendimiento = descripcionEmprendimiento;
         this.logo = logo;
         this.localidad = localidad;
         this.direccion = direccion;
-        this.listaProducto = listaProducto;
         this.telefonoEmprendimiento = telefonoEmprendimiento;
         this.instagram = instagram;
+        this.usuario = usuario;
+        this.listaProducto = listaProducto;
     }
 
     public Long getId() {
@@ -127,5 +133,13 @@ public class Emprendimiento {
 
     public void setInstagram(String instagram) {
         this.instagram = instagram;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

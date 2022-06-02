@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -29,22 +28,23 @@ public class Usuario {
     @Column(name = "telefono", nullable = false)
     private int telefono;
 
-    /*@OneToMany(fetch = EAGER)
-    @JoinColumn(name = "nombreEmprendimiento", referencedColumnName = "id", nullable = false)
-    private List<Emprendimiento> listaEmprendimiento;*/
+    @OneToMany(mappedBy = "usuario")
+    private List<Emprendimiento>listaEmprendimientos;
+
 
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, int telefono /*List<Emprendimiento> listaEmprendimiento*/) {
+    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, int telefono, List<Emprendimiento> listaEmprendimientos) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.email = email;
         this.telefono = telefono;
-        /*this.listaEmprendimiento = listaEmprendimiento*/;
+        this.listaEmprendimientos = listaEmprendimientos;
     }
+
 
     public Long getId() {
         return id;
@@ -86,11 +86,11 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-   /* public List<Emprendimiento> getListaEmprendimiento() {
-        return listaEmprendimiento;
+    public List<Emprendimiento> getListaEmprendimientos() {
+        return listaEmprendimientos;
     }
 
-    public void setListaEmprendimiento(List<Emprendimiento> listaEmprendimiento) {
-        this.listaEmprendimiento = listaEmprendimiento;
-    }*/
+    public void setListaEmprendimientos(List<Emprendimiento> listaEmprendimientos) {
+        this.listaEmprendimientos = listaEmprendimientos;
+    }
 }
