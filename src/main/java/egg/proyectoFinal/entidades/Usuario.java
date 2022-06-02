@@ -29,21 +29,21 @@ public class Usuario {
     @Column(name = "telefono", nullable = false)
     private int telefono;
 
-    @OneToMany(fetch = EAGER)
-    @JoinColumn(name = "nombre_emprendimiento", referencedColumnName = "id_emprendimiento", nullable = false)
-    private List<Emprendimiento> listaEmprendimiento;
+    /*@OneToMany(fetch = EAGER)
+    @JoinColumn(name = "nombreEmprendimiento", referencedColumnName = "id", nullable = false)
+    private List<Emprendimiento> listaEmprendimiento;*/
 
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, int telefono, List<Emprendimiento> listaEmprendimiento) {
+    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, int telefono /*List<Emprendimiento> listaEmprendimiento*/) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.email = email;
         this.telefono = telefono;
-        this.listaEmprendimiento = listaEmprendimiento;
+        /*this.listaEmprendimiento = listaEmprendimiento*/;
     }
 
     public Long getId() {
@@ -86,11 +86,11 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public List<Emprendimiento> getListaEmprendimiento() {
+   /* public List<Emprendimiento> getListaEmprendimiento() {
         return listaEmprendimiento;
     }
 
     public void setListaEmprendimiento(List<Emprendimiento> listaEmprendimiento) {
         this.listaEmprendimiento = listaEmprendimiento;
-    }
+    }*/
 }

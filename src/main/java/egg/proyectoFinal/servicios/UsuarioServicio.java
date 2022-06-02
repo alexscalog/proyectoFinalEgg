@@ -14,8 +14,8 @@ public class UsuarioServicio {
 
     @Transactional
     public void crearUsuario(Usuario usuario) {
-        if (usuarioRepositorio.emailExistente(usuario.getEmail()))
-            throw new IllegalArgumentException("El email ingresado ya está en uso");
+       /* if (usuarioRepositorio.emailExistente(usuario.getEmail()))
+            throw new IllegalArgumentException("El email ingresado ya está en uso.");*/
 
         Usuario usuario1 = new Usuario();
 
@@ -23,7 +23,7 @@ public class UsuarioServicio {
         usuario1.setApellidoUsuario(usuario.getApellidoUsuario());
         usuario1.setEmail(usuario.getEmail());
         usuario1.setTelefono(usuario.getTelefono());
-        usuario1.setListaEmprendimiento(usuario.getListaEmprendimiento());
+       /* usuario1.setListaEmprendimiento(usuario.getListaEmprendimiento());*/
 
         usuarioRepositorio.save(usuario);
     }
@@ -36,7 +36,7 @@ public class UsuarioServicio {
         usuario1.setApellidoUsuario(usuario.getApellidoUsuario());
         usuario1.setEmail(usuario.getEmail());
         usuario1.setTelefono(usuario.getTelefono());
-        usuario1.setListaEmprendimiento(usuario.getListaEmprendimiento());
+        /*usuario1.setListaEmprendimiento(usuario.getListaEmprendimiento());*/
 
         usuarioRepositorio.save(usuario);
     }
