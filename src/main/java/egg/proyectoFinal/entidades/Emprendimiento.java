@@ -9,12 +9,12 @@ import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "book")
+@Table(name = "emprendimiento")
 public class Emprendimiento {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id_emprendimiento")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "nombre_emprendimiento", length = 50, nullable = false)
