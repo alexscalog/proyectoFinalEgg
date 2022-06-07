@@ -45,7 +45,7 @@ public class ProductoServicio {
     }
 
     @Transactional(readOnly = true)
-    public List<Producto> listarProducto() {
+    public List<Producto> listarProductos() {
         return productoRepositorio.findAll();
     }
 
