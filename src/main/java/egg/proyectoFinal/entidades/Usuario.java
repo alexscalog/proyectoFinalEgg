@@ -25,6 +25,9 @@ public class Usuario {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
+    @Column(name = "contrasenia", nullable = false)
+    private String contrasenia;
+
     @Column(name = "telefono", nullable = false)
     private int telefono;
 
@@ -36,15 +39,15 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, int telefono, List<Emprendimiento> listaEmprendimientos) {
+    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, int telefono, List<Emprendimiento> listaEmprendimientos) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.email = email;
+        this.contrasenia = contrasenia;
         this.telefono = telefono;
         this.listaEmprendimientos = listaEmprendimientos;
     }
-
 
     public Long getId() {
         return id;
@@ -76,6 +79,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public int getTelefono() {

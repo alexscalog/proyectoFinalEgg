@@ -84,7 +84,7 @@ public class ProductoControlador {
 
         try {
            productoServicio.actualizarProducto(producto);
-            attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
+           attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("producto", producto);
             attributes.addFlashAttribute("excepcion", e.getMessage());
