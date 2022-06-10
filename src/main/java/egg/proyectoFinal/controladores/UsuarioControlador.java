@@ -3,6 +3,7 @@ package egg.proyectoFinal.controladores;
 
 import egg.proyectoFinal.entidades.Usuario;
 import egg.proyectoFinal.servicios.UsuarioServicio;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class UsuarioControlador {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView listarUsuarios(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-usuarios");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -38,6 +40,7 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/formulario")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView formularioCreacion(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("usuario-formulario");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -54,6 +57,7 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/formulario/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView traerUsuarioPorId(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("usuario-formulario");
         mav.addObject("usuario", usuarioServicio.obtenerUsuarioPorId(id));
@@ -63,6 +67,7 @@ public class UsuarioControlador {
 
 
     @PostMapping("/crear")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView crear(Usuario usuario, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/usuario");
 
@@ -79,6 +84,7 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/actualizar")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView actualizar(Usuario usuario, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/usuario");
 
@@ -95,6 +101,7 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/borrar/{id}")
+    @PreAuthorize("hasRole('ADMIN')") //PREGUNTAR SOBRE PERMISOS DE ELIMINACION USUARIO/ADMIN
     public RedirectView borrar(@PathVariable Long id) {
         RedirectView redirect = new RedirectView("/usuario");
         usuarioServicio.borrarUsuarioPorId(id);

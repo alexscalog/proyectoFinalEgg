@@ -1,5 +1,6 @@
 package egg.proyectoFinal.controladores;
 
+import egg.proyectoFinal.entidades.Rol;
 import egg.proyectoFinal.entidades.Usuario;
 import egg.proyectoFinal.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,9 @@ public class AutenticacionControlador {
             mav.addObject("excepcion", inputFlashMap.get("excepcion"));
             mav.addObject("usuario", inputFlashMap.get("usuario"));
         } else {
-            //User user = new User();
-            //user.setRole(Role.USER);
-            //mav.addObject("user", user);
+            Usuario usuario = new Usuario();
+            usuario.setRol(Rol.USER);
+            mav.addObject("usuario", usuario);
         }
 
         return mav;

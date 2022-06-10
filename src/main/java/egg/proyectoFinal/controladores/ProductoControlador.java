@@ -3,6 +3,7 @@ package egg.proyectoFinal.controladores;
 
 import egg.proyectoFinal.entidades.Producto;
 import egg.proyectoFinal.servicios.ProductoServicio;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class ProductoControlador {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView listarProductos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-productos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -38,6 +40,7 @@ public class ProductoControlador {
     }
 
     @GetMapping("/formulario")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView formularioCreacion(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("producto-formulario");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -54,6 +57,7 @@ public class ProductoControlador {
     }
 
     @GetMapping("/formulario/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView traerProductoPorId(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("producto-formulario");
         mav.addObject("producto", productoServicio.obtenerProductoPorId(id));
@@ -63,6 +67,7 @@ public class ProductoControlador {
 
 
     @PostMapping("/crear")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView crear(Producto producto, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 
@@ -79,6 +84,7 @@ public class ProductoControlador {
     }
 
     @PostMapping("/actualizar")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView actualizar(Producto producto, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 
@@ -95,6 +101,7 @@ public class ProductoControlador {
     }
 
     @PostMapping("/borrar/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public RedirectView borrar(@PathVariable Long id) {
         RedirectView redirect = new RedirectView("/producto");
         productoServicio.borrarProductoPorId(id);

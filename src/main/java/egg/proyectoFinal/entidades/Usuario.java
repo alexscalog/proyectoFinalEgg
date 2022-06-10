@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -35,11 +36,15 @@ public class Usuario {
     private List<Emprendimiento>listaEmprendimientos;
 
 
+    @Column(name = "usuario_rol", nullable = false)
+    private Rol rol;
+
+
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, int telefono, List<Emprendimiento> listaEmprendimientos) {
+    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, int telefono, List<Emprendimiento> listaEmprendimientos, Rol rol) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
@@ -47,7 +52,12 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.telefono = telefono;
         this.listaEmprendimientos = listaEmprendimientos;
+        this.rol = rol;
     }
+
+
+
+
 
     public Long getId() {
         return id;
@@ -103,5 +113,13 @@ public class Usuario {
 
     public void setListaEmprendimientos(List<Emprendimiento> listaEmprendimientos) {
         this.listaEmprendimientos = listaEmprendimientos;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

@@ -3,6 +3,7 @@ package egg.proyectoFinal.controladores;
 
 import egg.proyectoFinal.entidades.Emprendimiento;
 import egg.proyectoFinal.servicios.EmprendimientoServicio;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class EmprendimientoControlador {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView listarEmprendimientos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-emprendimientos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -38,6 +40,7 @@ public class EmprendimientoControlador {
     }
 
     @GetMapping("/formulario")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView formularioCreacion(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -55,6 +58,7 @@ public class EmprendimientoControlador {
     }
 
     @GetMapping("/formulario/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView traerEmprendimientoPorId(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
         mav.addObject("emprendimiento", emprendimientoServicio.obtenerEmprendimientoPorId(id));
@@ -64,6 +68,7 @@ public class EmprendimientoControlador {
 
 
     @PostMapping("/crear")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView crear(Emprendimiento emprendimiento, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
@@ -80,6 +85,7 @@ public class EmprendimientoControlador {
     }
 
     @PostMapping("/actualizar")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView actualizar(Emprendimiento emprendimiento, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
@@ -96,6 +102,7 @@ public class EmprendimientoControlador {
     }
 
     @PostMapping("/borrar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public RedirectView borrar(@PathVariable Long id) {
         RedirectView redirect = new RedirectView("/emprendimiento");
         emprendimientoServicio.borrarEmprendimientoPorId(id);
