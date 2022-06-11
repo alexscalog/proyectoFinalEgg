@@ -5,10 +5,8 @@ import egg.proyectoFinal.entidades.Producto;
 import egg.proyectoFinal.servicios.ProductoServicio;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -65,7 +63,7 @@ public class ProductoControlador {
         return mav;
     }
 
-
+/*
     @PostMapping("/crear")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView crear(Producto producto, RedirectAttributes attributes) {
@@ -83,14 +81,36 @@ public class ProductoControlador {
         return redirect;
     }
 
-    @PostMapping("/actualizar")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView actualizar(Producto producto, RedirectAttributes attributes) {
+ */
+
+    @PreAuthorize("hasRole('ADMIN', 'USER')")
+    @PostMapping("/crear")
+    //Recibe el autor y además recibe la foto, required en false pq es opcional que mande la foto
+    //Tipo MultipartFile tiene diversos métodos.
+    public RedirectView crear(Producto producto, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 
         try {
-           productoServicio.actualizarProducto(producto);
-           attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
+            productoServicio.crearProducto(producto, imagen);
+            attributes.addFlashAttribute("success", "The operation has been carried out successfully");
+        } catch (IllegalArgumentException e) {
+            attributes.addFlashAttribute("producto", producto);
+            attributes.addFlashAttribute("exception", e.getMessage());
+            redirect.setUrl("/producto/formulario");
+        }
+
+        return redirect;
+    }
+
+
+    @PostMapping("/actualizar")
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    public RedirectView actualizar(Producto producto, MultipartFile imagen, RedirectAttributes attributes) {
+        RedirectView redirect = new RedirectView("/producto");
+
+        try {
+            productoServicio.actualizarProducto(producto, imagen);
+            attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("producto", producto);
             attributes.addFlashAttribute("excepcion", e.getMessage());
