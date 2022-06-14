@@ -14,10 +14,13 @@ import java.util.List;
 public class ProductoServicio {
 
     private ProductoRepositorio productoRepositorio;
-    private  ImagenServicio imagenServicio;
- /*
- @Transactional
-    public void crearProducto(Producto producto) {
+    private ImagenServicio imagenServicio;
+
+
+    @Transactional
+    public void crearProducto(Producto producto, MultipartFile imagen) {
+        if (productoRepositorio.existsById(producto.getIdProducto()))
+            throw new IllegalArgumentException("Error!");
 
         Producto producto1 = new Producto();
 
@@ -30,25 +33,9 @@ public class ProductoServicio {
         productoRepositorio.save(producto);
     }
 
-  */
- @Transactional
- public void crearProducto(Producto producto, MultipartFile imagen) {
-     if (productoRepositorio.existsById(producto.getId()))
-         throw new IllegalArgumentException("Error!");
-
-     Producto producto1 = new Producto();
-
-     producto1.setNombreProducto(producto.getNombreProducto());
-     producto1.setDescripcionProducto(producto.getDescripcionProducto());
-     producto1.setCategoria(producto.getCategoria());
-     producto1.setImagen(producto.getImagen());
-     producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
-
-     productoRepositorio.save(producto);
- }
     @Transactional
     public void actualizarProducto(Producto producto, MultipartFile imagen) {
-        Producto producto1 = productoRepositorio.findById(producto.getId()).get();
+        Producto producto1 = productoRepositorio.findById(producto.getIdProducto()).get();
 
         producto1.setNombreProducto(producto.getNombreProducto());
         producto1.setDescripcionProducto(producto.getDescripcionProducto());
@@ -60,8 +47,8 @@ public class ProductoServicio {
     }
 
     @Transactional(readOnly = true)
-    public Producto obtenerProductoPorId(Long id) {
-        return productoRepositorio.findById(id).get();
+    public Producto obtenerProductoPorId(Long idProducto) {
+        return productoRepositorio.findById(idProducto).get();
     }
 
     @Transactional(readOnly = true)
@@ -70,8 +57,10 @@ public class ProductoServicio {
     }
 
     @Transactional
-    public void borrarProductoPorId(Long id) {
-        productoRepositorio.deleteById(id);
+    public void borrarProductoPorId(Long idProducto) {
+        productoRepositorio.deleteById(idProducto);
     }
+
+
 
 }

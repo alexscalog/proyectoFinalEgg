@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -52,16 +53,20 @@ public class UsuarioControlador {
             mav.addObject("usuario", new Usuario());
         }
 
-        mav.addObject("accion", "crear");
+        mav.addObject("action", "crear");
         return mav;
     }
 
     @GetMapping("/formulario/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ModelAndView traerUsuarioPorId(@PathVariable Long id) {
+    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    public ModelAndView traerUsuarioPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("usuario-formulario");
+
+        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+
+
         mav.addObject("usuario", usuarioServicio.obtenerUsuarioPorId(id));
-        mav.addObject("accion", "actualizar");
+        mav.addObject("action", "actualizar");
         return mav;
     }
 

@@ -13,7 +13,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id_producto")
-    private Long id;
+    private Long idProducto;
 
     @Column(name = "nombre_producto", length = 100, nullable = false)
     private String nombreProducto;
@@ -35,8 +35,8 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Long id, String nombreProducto, String descripcionProducto, String categoria, String imagen, Emprendimiento nombreEmprendimiento) {
-        this.id = id;
+    public Producto(Long idProducto, String nombreProducto, String descripcionProducto, String categoria, String imagen, Emprendimiento nombreEmprendimiento) {
+        this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
         this.categoria = categoria;
@@ -44,12 +44,12 @@ public class Producto {
         this.nombreEmprendimiento = nombreEmprendimiento;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdProducto() {
+        return idProducto;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombreProducto() {

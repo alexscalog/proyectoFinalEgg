@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -50,16 +51,19 @@ public class ProductoControlador {
             mav.addObject("producto", new Producto());
         }
 
-        mav.addObject("accion", "crear");
+        mav.addObject("action", "crear");
         return mav;
     }
 
     @GetMapping("/formulario/{id}")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public ModelAndView traerProductoPorId(@PathVariable Long id) {
+    public ModelAndView traerProductoPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("producto-formulario");
+
+        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+
         mav.addObject("producto", productoServicio.obtenerProductoPorId(id));
-        mav.addObject("accion", "actualizar");
+        mav.addObject("action", "actualizar");
         return mav;
     }
 

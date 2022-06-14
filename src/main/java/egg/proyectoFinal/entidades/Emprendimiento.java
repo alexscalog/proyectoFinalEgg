@@ -16,7 +16,7 @@ public class Emprendimiento {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id_emprendimiento")
-    private Long id;
+    private Long idEmprendimiento;
 
     @Column(name = "nombre_emprendimiento", length = 50, nullable = false)
     private String nombreEmprendimiento;
@@ -50,8 +50,8 @@ public class Emprendimiento {
     public Emprendimiento() {
     }
 
-    public Emprendimiento(Long id, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, int telefonoEmprendimiento, String instagram, Usuario usuario, List<Producto> listaProducto) {
-        this.id = id;
+    public Emprendimiento(Long idEmprendimiento, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, int telefonoEmprendimiento, String instagram, Usuario usuario, List<Producto> listaProducto) {
+        this.idEmprendimiento = idEmprendimiento;
         this.nombreEmprendimiento = nombreEmprendimiento;
         this.descripcionEmprendimiento = descripcionEmprendimiento;
         this.logo = logo;
@@ -63,12 +63,12 @@ public class Emprendimiento {
         this.listaProducto = listaProducto;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEmprendimiento() {
+        return idEmprendimiento;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEmprendimiento(Long idEmprendimiento) {
+        this.idEmprendimiento = idEmprendimiento;
     }
 
     public String getNombreEmprendimiento() {

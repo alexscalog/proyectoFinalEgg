@@ -4,6 +4,7 @@ import egg.proyectoFinal.entidades.Emprendimiento;
 import egg.proyectoFinal.repositorios.EmprendimientoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class EmprendimientoServicio {
 
     private EmprendimientoRepositorio emprendimientoRepositorio;
+    private ImagenServicio imagenServicio;
 
     @Transactional
     public void crearEmprendimiento(Emprendimiento emprendimiento) {
@@ -31,8 +33,8 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public void actualizarEmprendimiento(Emprendimiento emprendimiento) {
-        Emprendimiento emprendimiento1 = emprendimientoRepositorio.findById(emprendimiento.getId()).get();
+    public void actualizarEmprendimiento(Emprendimiento emprendimiento, MultipartFile imagen) {
+        Emprendimiento emprendimiento1 = emprendimientoRepositorio.findById(emprendimiento.getIdEmprendimiento()).get();
 
         emprendimiento1.setNombreEmprendimiento(emprendimiento.getNombreEmprendimiento());
         emprendimiento1.setDescripcionEmprendimiento(emprendimiento.getDescripcionEmprendimiento());
@@ -48,8 +50,8 @@ public class EmprendimientoServicio {
     }
 
     @Transactional(readOnly = true)
-    public Emprendimiento obtenerEmprendimientoPorId(Long id) {
-        return emprendimientoRepositorio.findById(id).get();
+    public Emprendimiento obtenerEmprendimientoPorId(Long idEmprendimiento) {
+        return emprendimientoRepositorio.findById(idEmprendimiento).get();
     }
 
     @Transactional(readOnly = true)
@@ -58,7 +60,7 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public void borrarEmprendimientoPorId(Long id) {
-        emprendimientoRepositorio.deleteById(id);
+    public void borrarEmprendimientoPorId(Long idEmprendimiento) {
+        emprendimientoRepositorio.deleteById(idEmprendimiento);
     }
 }

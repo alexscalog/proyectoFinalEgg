@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -53,16 +54,19 @@ public class EmprendimientoControlador {
 
         }
 
-        mav.addObject("accion", "crear");
+        mav.addObject("action", "crear");
         return mav;
     }
 
     @GetMapping("/formulario/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ModelAndView traerEmprendimientoPorId(@PathVariable Long id) {
+    public ModelAndView traerEmprendimientoPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
+
+        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+
         mav.addObject("emprendimiento", emprendimientoServicio.obtenerEmprendimientoPorId(id));
-        mav.addObject("accion", "actualizar");
+        mav.addObject("action", "actualizar");
         return mav;
     }
 
