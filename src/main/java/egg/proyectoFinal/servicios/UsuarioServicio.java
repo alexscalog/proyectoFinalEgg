@@ -90,7 +90,7 @@ public class UsuarioServicio implements UserDetailsService {
         Supplier<UsernameNotFoundException> supplier = () -> new UsernameNotFoundException("No existe un usuario relacionado al email ingresado.");
         Usuario usuario = usuarioRepositorio.findByEmail(email).orElseThrow(supplier);
 
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROL_" + usuario.getRol());
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attributes.getRequest().getSession(true);

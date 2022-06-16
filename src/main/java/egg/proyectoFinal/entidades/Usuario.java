@@ -5,7 +5,8 @@ import javax.persistence.*;
 
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
+
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -30,12 +31,12 @@ public class Usuario {
     private String contrasenia;
 
     @Column(name = "telefono", nullable = false)
-    private int telefono;
+    private Long telefono;
 
     @OneToMany(mappedBy = "usuario")
     private List<Emprendimiento>listaEmprendimientos;
 
-
+    @Enumerated(STRING)
     @Column(name = "usuario_rol", nullable = false)
     private Rol rol;
 
@@ -44,7 +45,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, int telefono, List<Emprendimiento> listaEmprendimientos, Rol rol) {
+    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, Long telefono, List<Emprendimiento> listaEmprendimientos, Rol rol) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
@@ -99,11 +100,11 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public int getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 

@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<header th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <a href="#"><img src="/imagenes/logo-misaccesorios.svg" alt=""></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">INICIO</a></li>
+                <li><a href="#">EMPRENDIMIENTOS</a></li>
+                <li><a href="#">PRODUCTOS</a></li>
+                <li class="iniciar-sesion-btn"><a href="#">MIS EMPRENDIMIENTOS</a></li>
+                <li class="registrarse-btn"><a href="#">MIS PRODUCTOS</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>

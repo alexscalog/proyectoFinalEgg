@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Map;
@@ -30,19 +31,29 @@ public class AutenticacionControlador {
     }
 
     @GetMapping("/login")
-    public ModelAndView login(@RequestParam(required = false) String error, @RequestParam(required = false) String salir, Principal principal) {
-        ModelAndView mav = new ModelAndView("login-formulario");
+    public ModelAndView login(@RequestParam(required = false) String error, @RequestParam(required = false) String salir, Principal principal, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("lista-usuarios");
 
-        if (error != null) mav.addObject("error", "Invalid email or password");
+        if (error != null) mav.addObject("error", "Email o contraseña inválidos.");
         if (salir != null) mav.addObject("salir", "You have successfully exited the platform");
         if (principal != null) mav.setViewName("redirect:/");
 
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (inputFlashMap != null) {
+            mav.addObject("excepcion", inputFlashMap.get("excepcion"));
+            mav.addObject("usuario", inputFlashMap.get("usuario"));
+        } else {
+            Usuario usuario = new Usuario();
+            usuario.setRol(Rol.USER);
+            mav.addObject("usuario", usuario);
+        }
         return mav;
     }
 
-    @GetMapping("/registrarse")
+    /*@GetMapping("/registrarse")
     public ModelAndView registrarse(HttpServletRequest request, Principal principal) {
-        ModelAndView mav = new ModelAndView("registrarse-formulario");
+        ModelAndView mav = new ModelAndView("login-formulario");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (principal != null) mav.setViewName("redirect:/");
@@ -57,18 +68,21 @@ public class AutenticacionControlador {
         }
 
         return mav;
-    }
+    }*/
 
     @PostMapping("/registro")
-    public RedirectView registro(Usuario usuario, RedirectAttributes attributes) {
+    public RedirectView registro(Usuario usuario, HttpServletRequest request, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/");
 
         try {
             usuarioServicio.crearUsuario(usuario);
+            request.login(usuario.getEmail(), usuario.getContrasenia());
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("usuario", usuario);
             attributes.addFlashAttribute("excepcion", e.getMessage());
-            redirect.setUrl("/autenticacion/registro");
+            redirect.setUrl("/autenticacion/login");
+        } catch (ServletException e) {
+            attributes.addFlashAttribute("error", "Auto login failed");
         }
 
         return redirect;

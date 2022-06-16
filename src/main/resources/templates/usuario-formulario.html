@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org", xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<head th:replace="fragmentos/head :: head"></head>
+
+<body>
+<header th:replace="fragmentos/header :: header"></header>
+
+<main>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-6">
+                <form th:action="@{/usuario/__${action}__}" th:object="${usuario}" method="post" autocomplete="off"
+                      class="needs-validation" novalidate>
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" th:field="*{email}" id="email" class="form-control" placeholder="Email"
+                               required>
+                        <label for="email">Email</label>
+                        <div class="invalid-feedback">Email is required</div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" th:field="*{contrasenia}" id="contrasenia" class="form-control"
+                               placeholder="Password" required>
+                        <label for="contrasenia">Contraseña</label>
+                        <div class="invalid-feedback">Password is required</div>
+                    </div>
+
+
+
+                    <button th:text="${action == 'crear' ? 'crear' : 'actualizar'}" type="submit"
+                            class="btn btn-primary"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/validation.js}"></script>
 </body>
+
 </html>
