@@ -25,17 +25,20 @@ public class AutenticacionControlador {
 
     private final UsuarioServicio usuarioServicio;
 
+
     @Autowired
     public AutenticacionControlador(UsuarioServicio usuarioServicio) {
         this.usuarioServicio = usuarioServicio;
+
     }
 
+
     @GetMapping("/login")
-    public ModelAndView login(@RequestParam(required = false) String error, @RequestParam(required = false) String salir, Principal principal, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("lista-usuarios");
+    public ModelAndView login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, Principal principal, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("login-formulario");
 
         if (error != null) mav.addObject("error", "Email o contraseña inválidos.");
-        if (salir != null) mav.addObject("salir", "You have successfully exited the platform");
+        if (logout != null) mav.addObject("logout", "You have successfully exited the platform");
         if (principal != null) mav.setViewName("redirect:/");
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);

@@ -51,7 +51,7 @@ public class ProductoControlador {
             mav.addObject("producto", new Producto());
         }
 
-        mav.addObject("action", "crear");
+        mav.addObject("accion", "crear");
         return mav;
     }
 
@@ -63,34 +63,15 @@ public class ProductoControlador {
         if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
 
         mav.addObject("producto", productoServicio.obtenerProductoPorId(id));
-        mav.addObject("action", "actualizar");
+        mav.addObject("accion", "actualizar");
         return mav;
     }
 
-/*
-    @PostMapping("/crear")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView crear(Producto producto, RedirectAttributes attributes) {
-        RedirectView redirect = new RedirectView("/producto");
 
-        try {
-            productoServicio.crearProducto(producto);
-            attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
-        } catch (IllegalArgumentException e) {
-            attributes.addFlashAttribute("producto", producto);
-            attributes.addFlashAttribute("excepcion", e.getMessage());
-            redirect.setUrl("/producto/formulario");
-        }
-
-        return redirect;
-    }
-
- */
 
     @PreAuthorize("hasRole('ADMIN', 'USER')")
     @PostMapping("/crear")
-    //Recibe el autor y además recibe la foto, required en false pq es opcional que mande la foto
-    //Tipo MultipartFile tiene diversos métodos.
+
     public RedirectView crear(Producto producto, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 

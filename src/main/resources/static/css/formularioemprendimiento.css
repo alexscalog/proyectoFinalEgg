@@ -1,0 +1,134 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background: white;
+    font-family: 'Montserrat Alternates';
+}
+
+#container{
+    width: 100%;
+    margin: 20px auto;
+}
+
+header{
+    background:  #b4adf9;
+    height: 100px;
+    width: 100%;
+    line-height: 100px;
+    float: left;
+    margin: 0px;    
+}
+
+.article{
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 100px;
+    padding: 10px;
+    line-height: center;
+}
+
+aside{
+    float: left;
+    width: 60%;
+    height: 80%;
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.formemp{
+    margin: 20px;
+}
+
+.inputContainer {
+    height: 45px;
+    float: right;
+    width: 40%;
+    margin-bottom: 17px;
+}
+
+.input{
+    top: 0px;
+    left: 0px;
+    height: 20px;
+    width: 60%;
+    border: 1px solid #5b4af2;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+.inputdesc{
+    top: 0px;
+    left: 0px;
+    height: 100px;
+    width: 60%;
+    border: 1px solid #5b4af2;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+.file-select {
+    position: relative;
+    display: list-item;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+  
+.file-select::before {
+    background-color: #171b26;
+    border: 2px solid #5b4af2;
+    color: white;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    content: 'Seleccionar';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.file-select::marker{
+    color: transparent;
+}
+  
+.file-select input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 280px;
+    display: inline-block;    
+}
+  
+#src-file1::before {
+    content: 'Subir un Logo';
+}
+
+.button {
+    background-color: #171b26;
+    border: 2px solid #5b4af2;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates';
+}
+

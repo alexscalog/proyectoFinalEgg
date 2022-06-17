@@ -54,7 +54,7 @@ public class EmprendimientoControlador {
 
         }
 
-        mav.addObject("action", "crear");
+        mav.addObject("accion", "crear");
         return mav;
     }
 
@@ -66,7 +66,7 @@ public class EmprendimientoControlador {
         if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
 
         mav.addObject("emprendimiento", emprendimientoServicio.obtenerEmprendimientoPorId(id));
-        mav.addObject("action", "actualizar");
+        mav.addObject("accion", "actualizar");
         return mav;
     }
 

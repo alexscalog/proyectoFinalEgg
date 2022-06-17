@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Formulario Emprendimientos</title>
+    <link rel="stylesheet" href="formularioemprendimiento.css"/>
 </head>
+
 <body>
 
+<div id="container">
+
+    <header th:replace="fragmentos/header :: header"></header>
+
+    <section>
+        <h3>Registre su Emprendimiento:</h3>
+
+
+        <Form th:action="@{/emprendimiento/__${accion}__}" th:object="${emprendimiento}" method="post" autocomplete="off" class="formemp">
+            <article class="article">
+                <div class="inputcontainer">
+                    <div class="file-select" id="src-file1">
+                        <label>Logo del emprendimiento</label> <br>
+                        <input type="file" th:field="*{logo}" id="LogoEmprendimiento" name="LogoEmprendimiento">
+                        <br>
+                    </div>
+                </div>
+            </article>
+            <aside>
+                <div class="inputcontainer">
+                    <label>Nombre del emprendimiento:</label> <br>
+                    <input type="text" th:field="*{nombreEmprendimiento}" id="NombreEmprendimiento" name="NombreEmprendimiento" class="input" placeholder="Nombre del emprendimiento.">
+                    <br>
+                </div>
+                <div class="inputcontainer">
+                    <label>Descripción del Emprendimiento:</label> <br>
+                    <input type="text" th:field="*{descripcionEmprendimiento}" id="DescripciónEmprendimiento" name="DescripciónEmprendimiento" class="inputdesc" placeholder="Ingrese una breve descripción.">
+                    <br>
+                </div>
+                <div class="inputcontainer">
+                    <label>Localidad</label> <br>
+                    <input type="text" th:field="*{localidad}" id="Localidad" name="Localidad" class="input" placeholder="¿de que municipio es?">
+                    <br>
+                </div>
+                <div class="inputcontainer">
+                    <label>Dirección</label> <br>
+                    <input type="text" th:field="*{direccion}" id="Dirección" name="Dirección" class="input" placeholder="¿donde podemos encontrarle?">
+                    <br>
+                </div>
+                <div class="inputcontainer">
+                    <label>Telefono</label> <br>
+                    <input type="tel" th:field="*{telefonoEmprendimiento}" id="TelefonoEmprendimiento" class="input" name="TelefonoEmprendimiento" placeholder="Ingrese Telefono o celular.">
+                    <br>
+                </div>
+                <div class="inputcontainer">
+                    <label>Instagram</label> <br>
+                    <input type="url" th:field="*{instagram}" id="InstagramEmprendimiento" class="input" name="InstagramEmprendimiento" placeholder="Ingrese un Instagram.">
+                    <br>
+                </div>
+                <br>
+                <input type="submit" value="Crear emprendimiento" class="button">
+            </aside>
+        </Form>
+    </section>
+</div>
 </body>
 </html>

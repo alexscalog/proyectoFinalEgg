@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Iniciar sesión</title>
+    <link th:href="@{/css/estilos.css}" rel="stylesheet" />
+
 </head>
+
 <body>
 
+
+<main>
+    <div class="contenedor">
+
+        <div th:if="${error}" th:text="${error}"></div>
+        <div th:if="${logout}" th:text="${logout}"></div>
+        <div class="caja-trasera">
+            <div class="caja-trasera-login">
+                <h3>¿Ya tienes cuenta?</h3>
+                <p>Inicia Sesion para entrar en la página</p>
+                <button id="boton-iniciar-sesion">Iniciar Sesión</button>
+            </div>
+            <div class="caja-trasera-registro">
+                <h3>¿Aún no tienes cuenta?</h3>
+                <p>Registrate para iniciar sesión</p>
+                <button id="boton-registrarse">Registrarse</button>
+            </div>
+        </div>
+        <!-- Formulario login y Registro-->
+        <div class="contenedor-login-registro">
+
+            <!-- Login  -->
+            <form th:action="@{/logincheck}" method="post" class="formulario-login" autocomplete="off">
+                <h2>Iniciar Sesion</h2>
+                <input type="email" name="email" placeholder="Correo Electrónico">
+                <input type="password" name="contrasenia"  placeholder="Contraseña">
+                <button type="submit">Entrar</button>
+            </form>
+
+            <!-- Registro  -->
+            <div th:if="${excepcion}" th:text="${excepcion}" ></div>
+            <form th:action="@{/autenticacion/registro}" th:object="${usuario}" method="post" autocomplete="off"
+                  class="formulario-registro">
+                <h2>Registrarse</h2>
+                <input type="text" th:field="*{nombreUsuario}" placeholder="Nombre" required/>
+                <input type="text" th:field="*{apellidoUsuario}" placeholder="Apellido" required/>
+                <input type="email" th:field="*{email}" placeholder="Correo Electronico" required/>
+                <input type="tel" th:field="*{telefono}" placeholder="Teléfono" required/>
+                <input type="password" th:field="*{contrasenia}" placeholder="Contraseña" required/>
+                <button type="submit">Registrarse</button>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+
+<script th:src="@{/js/script.js}"></script>
+
+<script th:src="@{/js/validation.js}"></script>
 </body>
+
 </html>

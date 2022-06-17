@@ -14,13 +14,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Seguridad extends WebSecurityConfigurerAdapter {
 
+
     private final UsuarioServicio usuarioServicio;
+
+
     private final BCryptPasswordEncoder codificador;
 
     public Seguridad(UsuarioServicio usuarioServicio, BCryptPasswordEncoder codificador) {
         this.usuarioServicio = usuarioServicio;
         this.codificador = codificador;
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -31,21 +35,21 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/autenticacion/registrarse", "/autenticacion/registro", "/css/*", "/js/*", "/img/*").permitAll()
-                    .antMatchers("/**").authenticated()
+                    .antMatchers("/home","/autenticacion/login", "/autenticacion/registro", "/css/*", "/js/*", "/img/*").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                     .formLogin()
-                        .loginPage("/autenticacion/login")
+                        .loginPage("/home")
                         .loginProcessingUrl("/logincheck")
                         .usernameParameter("email")
                         .passwordParameter("contrasenia")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/home", true)
                         .failureUrl("/autenticacion/login?error=true")
                         .permitAll()
                 .and()
                     .logout()
-                        .logoutUrl("/salir")
-                        .logoutSuccessUrl("/autenticacion/login?salir=true")
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/autenticacion/login?logout=true")
                         .permitAll()
                 .and()
                     .csrf()

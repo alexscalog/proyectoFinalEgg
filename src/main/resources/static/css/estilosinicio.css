@@ -1,0 +1,137 @@
+ *  {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+body{
+	background-image: url("Untitled-3.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	transition: all 0.4s ease;
+	background: #dac8bf;
+  }
+  nav.sticky{
+	padding: 15px 20px;
+	background: #ffffff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  nav .nav-content{
+	height: 100%;
+	max-width: 1200px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  nav .logo a img{
+	width: 100px;
+  }
+  nav.sticky .logo a img{
+	color: rgb(0, 0, 0);
+  }
+  .nav-content .nav-links{
+	display: flex;
+  }
+  .nav-content .nav-links li{
+	list-style: none;
+	margin: 0 8px;
+  }
+   .nav-links li a{
+	text-decoration: none;
+	color: #000000;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 10px 4px;
+	transition: all 0.3s ease;
+  }
+   .nav-links li a:hover{
+	 color: #ac8c7d;
+   }
+   nav.sticky .nav-links li a{
+	 color: #fff;
+	 transition: all 0.4s ease;
+  }
+   nav.sticky .nav-links li a:hover{
+	color: #000000;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn {
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn a {
+    color: #ac8c7d;
+    font-size: 1rem;
+    padding: 0.2rem 1.2rem;
+    border: 1px solid #ac8c7d;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn:hover a {
+    color: #fff;
+    background: #ac8c7d;
+}
+.nav-content .nav-links .registrarse-btn {
+	background: #000;
+	font-weight: 700;
+	padding: 0;
+	border-radius: 5px;
+}
+
+.nav-content .nav-links .registrarse-btn a{
+	display: block;
+	background: #a7a7a7;
+	padding: 0.1rem 1.1rem;
+	border: 1px solid #000;
+	border-radius: 5px;
+	transform: translate3d(-4px, -4px, 0);
+	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.nav-content .nav-links .registrarse-btn a:hover  {
+	transform: translate3d(-8px, -8px, 0);
+} 
+
+
+.container {
+    
+    display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content:left;
+    height: 70vh;
+	margin-left: 80px;
+	
+    
+    
+}
+
+.container .texto-caja h2{
+    margin-top: 190px;
+    font-size: 2em;
+    line-height: 1.5em;
+    font-weight: bold;
+    
+    
+    
+   }
+.container .texto-caja span{
+    font-size: 1em;
+    color: #ac8c7d
+
+}

@@ -25,15 +25,14 @@ import static java.util.Collections.singletonList;
 @Service
 public class UsuarioServicio implements UserDetailsService {
 
-    private UsuarioRepositorio usuarioRepositorio;
+
+    private final UsuarioRepositorio usuarioRepositorio;
+
     private final BCryptPasswordEncoder codificador;
 
-
-    @Autowired
     public UsuarioServicio(UsuarioRepositorio usuarioRepositorio, BCryptPasswordEncoder codificador) {
         this.usuarioRepositorio = usuarioRepositorio;
         this.codificador = codificador;
-
     }
 
 
@@ -48,11 +47,11 @@ public class UsuarioServicio implements UserDetailsService {
         usuario1.setContrasenia(codificador.encode(usuario.getContrasenia()));
         usuario1.setTelefono(usuario.getTelefono());
 
-        if (usuarioRepositorio.findAll().isEmpty()) usuario.setRol(Rol.ADMIN);
-        else usuario.setRol(Rol.USER);
+        if (usuarioRepositorio.findAll().isEmpty()) usuario1.setRol(Rol.ADMIN);
+        else usuario1.setRol(Rol.USER);
 
 
-        usuarioRepositorio.save(usuario);
+        usuarioRepositorio.save(usuario1);
     }
 
     @Transactional

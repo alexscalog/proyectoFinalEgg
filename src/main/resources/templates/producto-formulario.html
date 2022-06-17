@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="utf-8">
+    <title>Formulario Productos</title>
+    <link th:href="@{/css/formularioproducto.css}" href="/css/formularioproducto.css" rel="stylesheet" />
+
+</head>
+
+
+<body>
+<div id="container">
+    <header th:replace="fragmentos/header :: header"></header>
+
+
+    <div class="clearfix"></div>
+
+    <section id="FormProduct">
+        <h1>Registrar un producto:</h1> <br>
+
+        <div class="clearfix"></div>
+
+        <form th:action="@{/producto/__${accion}__}" th:object="${producto}" method="post" autocomplete="off">
+            <aside class="formPro">
+                <div class="imputcontainer">
+                    <label>Nombre del producto:</label> <br>
+                    <input type="text" th:field="*{nombreProducto}"  name="NombreProducto" class="input" placeholder="Ingrese un nombre al producto">
+                    <br>
+                </div>
+                <div class="imputcontainer">
+                    <label>Descripción del producto:</label> <br>
+                    <input type="text" th:field="*{descripcionProducto}"  name="DescripciónProducto" class="inputdesc" placeholder="Ingrese una breve descripción.">
+                    <br>
+                </div>
+                <div class="imputcontainer">
+                    <label>Categoría:</label> <br>
+                    <input type="text" th:field="*{categoria}"  name="Categoria" class="input" placeholder="Ingrese una breve descripción.">
+                    <br>
+                </div>
+                <div class="imputcontainer">
+                    <label>Emprendimiento:</label> <br>
+                    <input type="text" th:field="*{nombreEmprendimiento}"  name="nombreEmprendimiento" class="input" placeholder="¿a que emprendimiento pertenece?">
+                    <br>
+                </div>
+                <br>
+                <input type="submit" value="Cargar" class="button">
+
+            </aside>
+
+            <article class="Imagen">
+                <label>Imagen del producto:</label> <br>
+                <div class="file-select" id="src-file1" >
+                    <input type="file" th:field="*{imagen}" name="src-file1" aria-label="Archivo">
+                </div>
+                <!--br>
+                <div class="file-select" id="src-file2" >
+                    <input type="file" name="src-file2" aria-label="Archivo">
+                </div>
+                <br>
+                <div class="file-select" id="src-file3" >
+                    <input type="file" name="src-file3" aria-label="Archivo">
+                </div>
+                <br>
+                <div class="file-select" id="src-file4" >
+                    <input type="file" name="src-file4" aria-label="Archivo"-->
+            </article>
+
+            <br>
+
+            <div class="clearfix"></div>
+
+            <footer>
+                <p>contacto:</p> <br>
+                <a href="terminos.html">
+                    Terminos y condiciones
+                </a>
+            </footer>
+        </form>
+    </section>
+
+</div>
 </body>
+
+
 </html>

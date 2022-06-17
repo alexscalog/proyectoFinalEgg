@@ -13,4 +13,5 @@ public class AplicacionConfiguracion {
         return new BCryptPasswordEncoder();
     }
 
+
 }
