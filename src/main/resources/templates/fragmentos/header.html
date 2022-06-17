@@ -1,15 +1,16 @@
-<header th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <nav>
         <div class="nav-content">
-            <div class="logo">
-                <a href="#"><img src="logo-misaccesorios.svg" alt=""></a>
-            </div>
+
+               <a th:href="@{/home}"><img th:src="@{/imagenes/logo-misaccesorios.svg}"/> </a>
+
             <ul class="nav-links">
                 <li><a href="/home">INICIO</a></li>
                 <li><a href="/">EMPRENDIMIENTOS</a></li>
                 <li><a href="#">PRODUCTOS</a></li>
-                <li class="iniciar-sesion-btn"><a href="/autenticacion/login">Iniciar sesión / Registrarse</a></li>
-
+                <li class="iniciar-sesion-btn" sec:authorize="!isAuthenticated()"><a href="/autenticacion/login">👤</i></a></li>
+                <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
 
             </ul>
         </div>
