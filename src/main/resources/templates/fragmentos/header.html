@@ -6,9 +6,9 @@
                <a th:href="@{/home}"><img th:src="@{/imagenes/logo-misaccesorios.svg}"/> </a>
 
             <ul class="nav-links">
-                <li><a href="/home">INICIO</a></li>
-                <li><a href="/">EMPRENDIMIENTOS</a></li>
-                <li><a href="#">PRODUCTOS</a></li>
+                <li><a th:href="/home">INICIO</a></li>
+                <li><a th:href="/emprendimiento/lista-emprendimientos">EMPRENDIMIENTOS</a></li>
+                <li><a th:href="/producto/lista-productos">PRODUCTOS</a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="!isAuthenticated()"><a href="/autenticacion/login">👤</i></a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
 

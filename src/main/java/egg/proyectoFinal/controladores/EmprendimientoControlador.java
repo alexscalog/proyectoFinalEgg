@@ -28,7 +28,7 @@ public class EmprendimientoControlador {
         this.emprendimientoServicio = emprendimientoServicio;
     }
 
-    @GetMapping
+    @GetMapping("/lista-emprendimientos")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView listarEmprendimientos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-emprendimientos");

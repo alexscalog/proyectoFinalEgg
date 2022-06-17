@@ -26,7 +26,7 @@ public class ProductoControlador {
         this.productoServicio = productoServicio;
     }
 
-    @GetMapping
+    @GetMapping("/lista-productos")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView listarProductos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-productos");
