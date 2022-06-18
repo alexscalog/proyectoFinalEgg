@@ -5,16 +5,19 @@ import egg.proyectoFinal.repositorios.ProductoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @Service
 public class ProductoServicio {
 
-    private ProductoRepositorio productoRepositorio;
-    private ImagenServicio imagenServicio;
+    private final ProductoRepositorio productoRepositorio;
+    private final ImagenServicio imagenServicio;
+
+    public ProductoServicio(ProductoRepositorio productoRepositorio, ImagenServicio imagenServicio) {
+        this.productoRepositorio = productoRepositorio;
+        this.imagenServicio = imagenServicio;
+    }
 
 
     @Transactional
@@ -30,7 +33,7 @@ public class ProductoServicio {
         producto1.setImagen(producto.getImagen());
         producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
 
-        productoRepositorio.save(producto);
+        productoRepositorio.save(producto1);
     }
 
     @Transactional
@@ -43,7 +46,7 @@ public class ProductoServicio {
         producto1.setImagen(producto.getImagen());
         producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
 
-        productoRepositorio.save(producto);
+        productoRepositorio.save(producto1);
     }
 
     @Transactional(readOnly = true)

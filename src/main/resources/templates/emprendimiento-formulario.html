@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Formulario Emprendimientos</title>
-    <link rel="stylesheet" href="formularioemprendimiento.css"/>
+
 </head>
 
 <body>
@@ -58,7 +58,8 @@
                     <br>
                 </div>
                 <br>
-                <input type="submit" value="Crear emprendimiento" class="button">
+                <button th:text="${accion == 'crear' ? 'Crear' : 'Actualizar'}" type="submit"
+                        class="button"></button>
             </aside>
         </Form>
     </section>

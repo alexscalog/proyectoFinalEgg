@@ -1,30 +1,69 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="utf-8">
-    <title>Lista emprendimientos</title>
-    <link rel="stylesheet" href="emprendimientos.css"/>
-</head>
+
 
 <body>
-
 <header th:replace="fragmentos/header :: header"></header>
+<!--FALTA CSS PARA ESTA MIERDA O SINO APLICAR LA MISMA LOGICA A LA LISTA DE PRODUCTOS QUE HIZO MAX-->
+<main>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
 
-<div class="container-card">
-    <div class="box">
-        <div class="heading">
-            <img src="emprendimiento-1-img.jpeg" alt="">
-            <div class="text">
-                <h2> th:field="*{nombreEmprendimiento}" </h2>
-                <h3>VETA lentesdemadera</h3>
-                <p>Lentes de madera. <br>
-                    Diseños exclusivos de lentes <br>
-                    hechos de madera.</p>
-                <a href="#">ir</a>
+                <div th:if="${emprendimientos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
+                    You must enter users.
+                    <a th:href="@{/emprendimiento/formulario}" class="alert-link">Create user.</a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div th:unless="${emprendimientos.isEmpty()}" class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr class="table-dark">
+                            <th>Logo del emprendimiento</th>
+                            <th>Nombre del emprendimiento</th>
+                            <th>Descripcion</th>
+                            <th>Localidad</th>
+                            <th>Direccion</th>
+                            <th>Teléfono de contacto</th>
+                            <th>Instagram</th>
+                            <th>Productos</th>
+                            <th sec:authorize="isAuthenticated()">Usuario</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="emprendimiento : ${emprendimientos}">
+                            <td ><img th:src="${emprendimiento.logo} ? @{/imagenesCargadas/__${emprendimiento.logo}__} : @{/imagenesCargadas/default-image.png}"
+                                      width="20"></td>
+                            <td th:text="${emprendimiento.nombreEmprendimiento}"></td>
+                            <td th:text="${emprendimiento.descripcionEmprendimiento}"></td>
+                            <td th:text="${emprendimiento.localidad}"></td>
+                            <td th:text="${emprendimiento.direccion}"></td>
+                            <td th:text="${emprendimiento.telefonoEmprendimiento}"></td>
+                            <td th:text="${emprendimiento.instagram}"></td>
+                            <td th:text="${emprendimiento.listaProducto}"><a th:href="@{/producto/listar-producto}">Productos</a></td><!--FALTA CONECTAR ESTA PARTE CON LA LISTA DE PRODUCTOS-->
+                            <td sec:authorize="isAuthenticated()" th:text="${emprendimiento.usuario}"></td>
+
+                            <td><a class="btn btn-warning" sec:authorize="hasRole('ADMIN')" th:href="@{/emprendimiento/formulario/__${emprendimiento.idEmprendimiento}__}">Update</a></td>
+                            <td>
+                                <form sec:authorize="hasRole('ADMIN')" th:action="@{/emprendimiento/borrar/__${emprendimiento.idEmprendimiento}__}" method="post">
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
+
+
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
+
 </html>

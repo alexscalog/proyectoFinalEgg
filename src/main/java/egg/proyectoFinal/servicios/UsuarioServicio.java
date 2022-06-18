@@ -65,7 +65,7 @@ public class UsuarioServicio implements UserDetailsService {
         usuario1.setTelefono(usuario.getTelefono());
 
 
-        usuarioRepositorio.save(usuario);
+        usuarioRepositorio.save(usuario1);
     }
 
     @Transactional(readOnly = true)

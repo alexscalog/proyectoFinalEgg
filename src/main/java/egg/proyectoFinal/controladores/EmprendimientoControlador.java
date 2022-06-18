@@ -3,6 +3,7 @@ package egg.proyectoFinal.controladores;
 
 import egg.proyectoFinal.entidades.Emprendimiento;
 import egg.proyectoFinal.servicios.EmprendimientoServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -22,14 +22,24 @@ import java.util.Map;
 @RequestMapping("/emprendimiento")
 public class EmprendimientoControlador {
 
+
     private final EmprendimientoServicio emprendimientoServicio;
 
+    @Autowired
     public EmprendimientoControlador(EmprendimientoServicio emprendimientoServicio) {
         this.emprendimientoServicio = emprendimientoServicio;
     }
 
-    @GetMapping("/lista-emprendimientos")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @GetMapping("/{id}")
+    public ModelAndView emprendimiento(HttpServletRequest request, @PathVariable Long id){
+        ModelAndView mav = new ModelAndView("emprendimiento-perfil");
+
+        mav.addObject("emprendimiento", emprendimientoServicio.obtenerEmprendimientoPorId(id));
+
+        return mav;
+    }
+
+    @GetMapping("/lista")
     public ModelAndView listarEmprendimientos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-emprendimientos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -40,8 +50,23 @@ public class EmprendimientoControlador {
         return mav;
     }
 
+
+    @GetMapping("/mis-emprendimientos/{id}")
+    public ModelAndView listarMisEmprendimientos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
+        ModelAndView mav = new ModelAndView("lista-emprendimientos");
+
+        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
+
+        mav.addObject("emprendimientos", emprendimientoServicio.listarEmprendimientos());
+        return mav;
+    }
+
     @GetMapping("/formulario")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView formularioCreacion(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -71,8 +96,10 @@ public class EmprendimientoControlador {
     }
 
 
+
+
     @PostMapping("/crear")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView crear(Emprendimiento emprendimiento, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 

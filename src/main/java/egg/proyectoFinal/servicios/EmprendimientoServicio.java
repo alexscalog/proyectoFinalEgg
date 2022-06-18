@@ -1,6 +1,7 @@
 package egg.proyectoFinal.servicios;
 
 import egg.proyectoFinal.entidades.Emprendimiento;
+import egg.proyectoFinal.entidades.Producto;
 import egg.proyectoFinal.repositorios.EmprendimientoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,8 +12,13 @@ import java.util.List;
 @Service
 public class EmprendimientoServicio {
 
-    private EmprendimientoRepositorio emprendimientoRepositorio;
-    private ImagenServicio imagenServicio;
+    private final EmprendimientoRepositorio emprendimientoRepositorio;
+    private final ImagenServicio imagenServicio;
+
+    public EmprendimientoServicio(EmprendimientoRepositorio emprendimientoRepositorio, ImagenServicio imagenServicio) {
+        this.emprendimientoRepositorio = emprendimientoRepositorio;
+        this.imagenServicio = imagenServicio;
+    }
 
     @Transactional
     public void crearEmprendimiento(Emprendimiento emprendimiento) {
@@ -29,7 +35,7 @@ public class EmprendimientoServicio {
         emprendimiento1.setInstagram(emprendimiento.getInstagram());
 
 
-        emprendimientoRepositorio.save(emprendimiento);
+        emprendimientoRepositorio.save(emprendimiento1);
     }
 
     @Transactional
@@ -46,7 +52,7 @@ public class EmprendimientoServicio {
         emprendimiento1.setInstagram(emprendimiento.getInstagram());
 
 
-        emprendimientoRepositorio.save(emprendimiento);
+        emprendimientoRepositorio.save(emprendimiento1);
     }
 
     @Transactional(readOnly = true)
@@ -62,5 +68,10 @@ public class EmprendimientoServicio {
     @Transactional
     public void borrarEmprendimientoPorId(Long idEmprendimiento) {
         emprendimientoRepositorio.deleteById(idEmprendimiento);
+    }
+
+    @Transactional
+    public List<Producto> productosDelEmprendimiento(String idEmprendimiento){
+        return emprendimientoRepositorio.findByIdEmprendimiento(idEmprendimiento);
     }
 }

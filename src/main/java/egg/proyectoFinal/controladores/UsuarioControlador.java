@@ -3,6 +3,7 @@ package egg.proyectoFinal.controladores;
 
 import egg.proyectoFinal.entidades.Usuario;
 import egg.proyectoFinal.servicios.UsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +25,13 @@ public class UsuarioControlador {
 
     private final UsuarioServicio usuarioServicio;
 
+    @Autowired
     public UsuarioControlador(UsuarioServicio usuarioServicio) {
         this.usuarioServicio = usuarioServicio;
     }
 
-    @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/lista")
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView listarUsuarios(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-usuarios");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);

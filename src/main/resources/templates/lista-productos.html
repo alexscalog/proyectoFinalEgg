@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
 </head>
+
+<meta charset="utf-8">
+<title>Lista de productos</title>
+<link th:href="@{/css/productos.css}" rel="stylesheet" />
+
+
 <body>
+<header th:replace="fragmentos/header :: header"></header>
 
-<h2>HOLAAAA</h2>
+<!-- ------------------------------------tarjetas---------------------------------------------------------------- -->
 
+<div class="container-card">
+    <div class="box">
+        <div class="heading">
+            <img src="emprendimiento-1-img.jpeg" alt="">
+            <div class="text">
+                <a href=""><h2>Lentes de sol</h2></a>
+                <h3>VETA </h3>
+                <p>Lente copado <br>
+                    Ideal para el verano</p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
+<!--tr th:each="book : ${books}">
+    <td th:text="${book.isbn}"></td>
+    <td th:text="${book.title}"></td>
+    <td th:text="${book.year}"></td>
+    <td th:text="|${book.author.name} ${book.author.surname}|"></td>
+    <td th:text="${book.publisher.name}"></td>
+    <td><a class="btn btn-warning" th:href="@{/books/form/__${book.id}__}">Update</a></td>
+    <td>
+        <form th:action="@{/books/delete/__${book.id}__}" method="post">
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+    </td-->

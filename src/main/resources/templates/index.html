@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 
 <head>
     <meta charset="utf-8">
@@ -15,12 +15,28 @@
 
 
 
-<div class="container" id="home">
+<div class="container" id="home" sec:authorize="!isAuthenticated()">
     <div class="texto-caja">
         <h2>Encontrá los mejores <br><span>Emprendimientos misioneros</span></h2>
         <p>Queremos mostrarte accesorios de moda <br>de la mano de productores regionales. </p>
     </div>
 </div>
 
+<div class="container" id="logeado" sec:authorize="isAuthenticated()">
+    <div class="texto-caja">
+        <h2>¡Te damos la bienvenida! <br><span>emprendamos juntos.</span></h2>
+        <p>Compartí tus accesorios de moda, <br>Junto a productores regionales </p>
+    </div>
+
+    <div>
+
+        <button id="crear-emprendimiento"><a th:href="@{/emprendimiento/formulario}">Crear emprendimiento</a></button>
+    </div>
+
+</div>
+
+
+
+<script th:src="@{/js/validation.js}"></script>
 </body>
 </html>

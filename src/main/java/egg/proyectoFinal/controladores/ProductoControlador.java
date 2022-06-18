@@ -26,8 +26,7 @@ public class ProductoControlador {
         this.productoServicio = productoServicio;
     }
 
-    @GetMapping("/lista-productos")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @GetMapping("/listar-productos")
     public ModelAndView listarProductos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-productos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -38,7 +37,21 @@ public class ProductoControlador {
         return mav;
     }
 
-    @GetMapping("/formulario")
+    @GetMapping("/mis-productos/{id}")
+    public ModelAndView listarMisProductos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
+        ModelAndView mav = new ModelAndView("lista-emprendimientos");
+
+        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
+
+        mav.addObject("emprendimientos", productoServicio.listarProductos());
+        return mav;
+    }
+
+    @GetMapping("/formulario-p")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView formularioCreacion(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("producto-formulario");
@@ -55,7 +68,7 @@ public class ProductoControlador {
         return mav;
     }
 
-    @GetMapping("/formulario/{id}")
+    @GetMapping("/formulario-p/{id}")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView traerProductoPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("producto-formulario");
