@@ -1,15 +1,9 @@
- *  {
+*  {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	text-decoration: none;
 	font-family: 'Montserrat Alternates', sans-serif;
-}
-
-body{
-	background-repeat: no-repeat;
-	background-size: cover;
-
 }
 nav{
 	position: fixed;
@@ -18,7 +12,6 @@ nav{
 	width: 100%;
 	padding: 20px;
 	transition: all 0.4s ease;
-	background: #dac8bf;
   }
   nav.sticky{
 	padding: 15px 20px;
@@ -55,7 +48,7 @@ nav{
 	transition: all 0.3s ease;
   }
    .nav-links li a:hover{
-	 color: #ac8c7d;
+	 color: #5b4af2;
    }
    nav.sticky .nav-links li a{
 	 color: #fff;
@@ -71,31 +64,19 @@ nav{
 }
 
 .nav-content .nav-links .iniciar-sesion-btn a {
-    color: #ac8c7d;
-    font-size: 1rem;
+    color: #5b4af2;
+    font-size: 1.1rem;
     padding: 0.2rem 1.2rem;
-    border: 1px solid #ac8c7d;
+    border: 1px solid #5b4af2;
     border-radius: 5px;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-}
-
-#crear-emprendimiento{
- color: #ac8c7d;
-    font-size: 1rem;
-    padding: 0.2rem 1.2rem;
-    border: 1px solid #ac8c7d;
-    border-radius: 5px;
-    -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-
 }
 
 .nav-content .nav-links .iniciar-sesion-btn:hover a {
     color: #fff;
-    background: #ac8c7d;
+    background: #5b4af2;
 }
 .nav-content .nav-links .registrarse-btn {
 	background: #000;
@@ -119,85 +100,109 @@ nav{
 } 
 
 
-.container {
-    
-    display: flex;
-    align-items: center;
-    text-align: left;
-    justify-content:left;
-    height: 70vh;
-	margin-left: 80px;
+/* perfil//////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+.container-card{
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+	justify-content: center ;
+	flex-wrap: wrap;
+	margin-top: 200px;
+	width: 100%;
+}
+.box{
+    margin-top: 150px;
+	max-width: 1300px;
+	padding: 10px;
+    margin-left: 200px ;
+}
+
+.box img{
+	float: left;
+	margin-right: 50px;
+	max-width: 400px;
+	height: 400px;
+	display: block;
+	object-fit: cover;
+	border-radius: 1rem;
+	box-shadow: 5px 5px 0px #25282a;
+	position: relative;
+	transform: scale(1);
+	transition: 200ms cubic-bezier(0.11, -0.25, 0.7, 1.22);
+	transform-origin: bottom right;
+}
+
+.box .text{
 	
+	width: 100%;
+	padding-top: 17px;
+	min-width: 900px;
+}
+
+.box .text h1{
+	
+	color: #5b4af2;
+
+}
+
+
+.box .text p{
+font-weight: 400;
+font-size:small;
+margin-bottom: 10px;
+}
+.box .text p .telefono{
+    font-size: small;
+    margin-top: 20px; 
+}
+
+
+.box .text p .localidad{
+font-size: small;
+margin-top: 10px; 
+}
+
+
+
+.box .text p .direccion{
+  font-size: small;
+     margin-top: 10px;
+}
+
+
+
+.box .text .redes li{
     
-    
+    padding-right: 1em;
+    padding-top: 1em;
+    float: left;
+    list-style: none
 }
 
-.container .texto-caja h2{
-    margin-top: 190px;
-    font-size: 2em;
-    line-height: 1.5em;
-    font-weight: bold;
-    
-    
-    
-   }
-.container .texto-caja span{
-    font-size: 1em;
-    color: #ac8c7d
-
-}
-
-.itemCarrusel {
-    position: relative;
-    height: 100%;
-}
-
-.tarjetaCarrusel {
-    background-color: #dac8bf;
-    height: 100%;
-}
-
-.flechasCarrusel {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-#conteItemsCarrusel {
-    height: 300px;
-    overflow: hidden;
-    box-shadow: -1px 7px 28px -3px rgba(0, 0, 0, 0.72);
-    -webkit-box-shadow: -1px 7px 28px -3px rgba(0, 0, 0, 0.72);
-    -moz-box-shadow: -1px 7px 28px -3px rgba(0, 0, 0, 0.72);
-}
-
-a {
+.box .text .redes li a{
     text-decoration: none;
 }
 
-.itemCarrusel i {
-    color: black;
-    font-size: 1em;
+.box .text .boton  {
+    margin-top: 5em;
+    margin-left: 11em;
 }
 
-#contePuntos {
-    display: flex;
-    justify-content: center;
+.box .text .boton a {
+    text-decoration: none;
+    color: #6C63FF;
+    font-size: 1.1rem;
+    padding: 0.2rem 1.2rem;
+    border: 1px solid #6C63FF;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-#contePuntos>a {
-    font-size: 1em;
-    color: black;
-    margin-right: 50px;
-}
-
-.itemCarrusel img {
-    width: 100%;
-    height: 100%;
-
+.box .text .boton a:hover {
+    color: #fff;
+    background: #6C63FF;
 }

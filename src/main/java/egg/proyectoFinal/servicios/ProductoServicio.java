@@ -30,8 +30,9 @@ public class ProductoServicio {
         producto1.setNombreProducto(producto.getNombreProducto());
         producto1.setDescripcionProducto(producto.getDescripcionProducto());
         producto1.setCategoria(producto.getCategoria());
-        producto1.setImagen(producto.getImagen());
         producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
+
+        if (!imagen.isEmpty()) producto1.setImagen(imagenServicio.copiar(imagen));
 
         productoRepositorio.save(producto1);
     }

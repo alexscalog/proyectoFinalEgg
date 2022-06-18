@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="emprendimiento : ${emprendimientos}">
-                            <td ><img th:src="${emprendimiento.logo} ? @{/imagenesCargadas/__${emprendimiento.logo}__} : @{/imagenesCargadas/default-image.png}"
+                            <td ><img th:src="${emprendimiento.logo} ? @{/uploads/__${emprendimiento.logo}__} : @{/uploads/default.jpg}"
                                       width="20"></td>
                             <td th:text="${emprendimiento.nombreEmprendimiento}"></td>
                             <td th:text="${emprendimiento.descripcionEmprendimiento}"></td>

@@ -21,19 +21,19 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public void crearEmprendimiento(Emprendimiento emprendimiento) {
+    public void crearEmprendimiento(Emprendimiento emprendimiento, MultipartFile imagen) {
 
         Emprendimiento emprendimiento1 = new Emprendimiento();
 
         emprendimiento1.setNombreEmprendimiento(emprendimiento.getNombreEmprendimiento());
         emprendimiento1.setDescripcionEmprendimiento(emprendimiento.getDescripcionEmprendimiento());
-        emprendimiento1.setLogo(emprendimiento.getLogo());
         emprendimiento1.setLocalidad(emprendimiento.getLocalidad());
         emprendimiento1.setDireccion(emprendimiento.getDireccion());
         emprendimiento1.setListaProducto(emprendimiento.getListaProducto());
         emprendimiento1.setTelefonoEmprendimiento(emprendimiento.getTelefonoEmprendimiento());
         emprendimiento1.setInstagram(emprendimiento.getInstagram());
 
+        if (!imagen.isEmpty()) emprendimiento1.setLogo(imagenServicio.copiar(imagen));
 
         emprendimientoRepositorio.save(emprendimiento1);
     }

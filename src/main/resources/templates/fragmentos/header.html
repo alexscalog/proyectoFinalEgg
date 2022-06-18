@@ -3,20 +3,21 @@
     <nav>
         <div class="nav-content">
 
-               <a th:href="@{/home}"><img th:src="@{/imagenes/logo-misaccesorios.svg}" /> </a>
+               <a th:href="@{/home}"><img th:src="@{/img/logo-misaccesorios.svg}" width="100px"/></a>
 
             <ul class="nav-links">
                 <li><a href="/home">INICIO</a></li>
                 <li><a th:href="@{/emprendimiento/lista}">EMPRENDIMIENTOS</a></li>
                 <li><a th:href="@{/producto/formulario}">PRODUCTOS</a></li>
-                <li class="iniciar-sesion-btn" sec:authorize="!isAuthenticated()"><a href="/autenticacion/login">👤</i></a></li>
+                <li class="iniciar-sesion-btn" sec:authorize="!isAuthenticated()"><a href="/autenticacion/login"><i class="fa-solid fa-user"></i></a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/mis-emprendimientos/{id}}">Mis emprendimientos</a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/mis-productos/{id}}">Mis productos</a></li>
-                <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+                <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
 
             </ul>
         </div>
     </nav>
 
     <script th:src="@{/js/validation.js}"></script>
+    <script src="https://kit.fontawesome.com/a0ff895d56.js" crossorigin="anonymous"></script>
 </header>

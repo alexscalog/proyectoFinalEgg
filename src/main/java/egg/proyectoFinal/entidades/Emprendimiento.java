@@ -25,7 +25,7 @@ public class Emprendimiento {
     @Column(name = "descripcion_emprendimiento", nullable = false)
     private String descripcionEmprendimiento;
 
-    @Column(name = "logo", nullable = false)
+    @Column(name = "logo")
     private String logo;
 
     @Column(name = "localidad", length = 100, nullable = false)

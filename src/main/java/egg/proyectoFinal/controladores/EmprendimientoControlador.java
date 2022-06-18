@@ -6,10 +6,8 @@ import egg.proyectoFinal.servicios.EmprendimientoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -25,12 +23,13 @@ public class EmprendimientoControlador {
 
     private final EmprendimientoServicio emprendimientoServicio;
 
+
     @Autowired
     public EmprendimientoControlador(EmprendimientoServicio emprendimientoServicio) {
         this.emprendimientoServicio = emprendimientoServicio;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/perfil/{id}")
     public ModelAndView emprendimiento(HttpServletRequest request, @PathVariable Long id){
         ModelAndView mav = new ModelAndView("emprendimiento-perfil");
 
@@ -100,11 +99,11 @@ public class EmprendimientoControlador {
 
     @PostMapping("/crear")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView crear(Emprendimiento emprendimiento, RedirectAttributes attributes) {
+    public RedirectView crear(Emprendimiento emprendimiento, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
         try {
-            emprendimientoServicio.crearEmprendimiento(emprendimiento);
+            emprendimientoServicio.crearEmprendimiento(emprendimiento, imagen);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("emprendimiento", emprendimiento);
@@ -117,11 +116,11 @@ public class EmprendimientoControlador {
 
     @PostMapping("/actualizar")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView actualizar(Emprendimiento emprendimiento, RedirectAttributes attributes) {
+    public RedirectView actualizar(Emprendimiento emprendimiento, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
         try {
-           emprendimientoServicio.crearEmprendimiento(emprendimiento);
+           emprendimientoServicio.crearEmprendimiento(emprendimiento, imagen);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("emprendimiento", emprendimiento);

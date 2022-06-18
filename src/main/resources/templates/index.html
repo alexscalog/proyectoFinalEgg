@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Home</title>
     <link th:href="@{/css/estilosinicio.css}" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
 
@@ -24,7 +24,7 @@
 
 <div class="container" id="logeado" sec:authorize="isAuthenticated()">
     <div class="texto-caja">
-        <h2>¡Te damos la bienvenida! <br><span>emprendamos juntos.</span></h2>
+        <h2>¡Te damos la bienvenida! <br><span>Emprendamos juntos</span></h2>
         <p>Compartí tus accesorios de moda, <br>Junto a productores regionales </p>
     </div>
 
@@ -35,7 +35,43 @@
 
 </div>
 
+<section>
+    <div id="conteItemsCarrusel">
+        <div class="itemCarrusel" id="itemCarrusel-1">
+            <div class="tarjetaCarrusel" id="tarjetaCarrusel-1"><img src="/img/logo.png" alt="item-1-carrusel">
+            </div>
+            <div class="flechasCarrusel">
+                <a href="#itemCarrusel-3"> <i><i class="fa-solid fa-circle-chevron-left"></i></i></a>
+                <a href="#itemCarrusel-2"><i><i class="fa-solid fa-circle-chevron-right"></i></i> </a>
+            </div>
+        </div>
 
+        <div class="itemCarrusel" id="itemCarrusel-2">
+            <div class="tarjetaCarrusel" id="tarjetaCarrusel-2"><img src="" alt="item-2-carrusel">
+            </div>
+            <div class="flechasCarrusel">
+                <a href="#itemCarrusel-1"> <i><i class="fa-solid fa-circle-chevron-left"></i></i></a>
+                <a href="#itemCarrusel-3"><i><i class="fa-solid fa-circle-chevron-right"></i></i> </a>
+            </div>
+
+        </div>
+
+        <div class="itemCarrusel" id="itemCarrusel-3">
+            <div class="tarjetaCarrusel" id="tarjetaCarrusel-3"><img src="" alt="item-3-carrusel">
+            </div>
+            <div class="flechasCarrusel">
+                <a href="#itemCarrusel-2"> <i><i class="fa-solid fa-circle-chevron-left"></i></i></a>
+                <a href="#itemCarrusel-1"><i><i class="fa-solid fa-circle-chevron-right"></i></i> </a>
+            </div>
+
+        </div>
+    </div>
+    <div id="contePuntos">
+        <a href="#itemCarrusel-1"><i class="fa-solid fa-circle"></i> </a>
+        <a href="#itemCarrusel-2"><i class="fa-solid fa-circle"></i> </a>
+        <a href="#itemCarrusel-3"><i class="fa-solid fa-circle"></i> </a>
+    </div>
+</section>
 
 <script th:src="@{/js/validation.js}"></script>
 </body>
