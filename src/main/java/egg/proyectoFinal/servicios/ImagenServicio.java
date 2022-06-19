@@ -13,7 +13,7 @@ import java.nio.file.StandardCopyOption;
 public class ImagenServicio {
 
 
-    private static final String DIRECTORY = "src/main/resources/imagenesCargadas";
+    private static final String DIRECTORY = "src/main/resources/uploads";
 
     public String copiar(MultipartFile imagen) {
         try {

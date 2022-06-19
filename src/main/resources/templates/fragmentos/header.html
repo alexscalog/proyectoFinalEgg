@@ -8,7 +8,7 @@
             <ul class="nav-links">
                 <li><a href="/home">INICIO</a></li>
                 <li><a th:href="@{/emprendimiento/lista}">EMPRENDIMIENTOS</a></li>
-                <li><a th:href="@{/producto/formulario}">PRODUCTOS</a></li>
+                <li><a th:href="@{/producto/listar-productos}">PRODUCTOS</a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="!isAuthenticated()"><a href="/autenticacion/login"><i class="fa-solid fa-user"></i></a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/mis-emprendimientos/{id}}">Mis emprendimientos</a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/mis-productos/{id}}">Mis productos</a></li>

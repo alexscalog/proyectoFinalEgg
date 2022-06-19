@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Formulario Emprendimientos</title>
+    <link th:href="@{/css/formularioemprendimientoestilos.css}" rel="stylesheet" />
 
 </head>
 
@@ -16,13 +17,13 @@
         <h3>Registre su Emprendimiento:</h3>
 
 
-        <Form th:action="@{/emprendimiento/__${accion}__}" th:object="${emprendimiento}" method="post" autocomplete="off" class="formemp" enctype="multipart/form-data">
+        <Form th:action="@{/emprendimiento/__${accion}__}" th:object="${emprendimiento}" method="post" autocomplete="off" class="formemp" >
             <article class="article">
                 <div class="inputcontainer">
 
                     <div class="file-select" id="src-file1">
                         <label>Logo del emprendimiento</label> <br>
-                        <input type="file" id="LogoEmprendimiento" name="logoEmprendimiento" accept="image/*">
+                        <input type="file" id="LogoEmprendimiento" th:field="*{logo}">
                         <br>
                     </div>
 

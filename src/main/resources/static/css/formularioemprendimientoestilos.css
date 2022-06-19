@@ -1,0 +1,228 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background: white;
+    font-family: 'Montserrat Alternates';
+}
+
+
+
+
+nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	transition: all 0.4s ease;
+	background: #dac8bf;
+  }
+  nav.sticky{
+	padding: 15px 20px;
+	background: #ffffff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  nav .nav-content{
+	height: 100%;
+	max-width: 1200px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  nav .logo a img{
+	width: 90px;
+  }
+  nav.sticky .logo a img{
+	color: rgb(0, 0, 0);
+  }
+  .nav-content .nav-links{
+	display: flex;
+  }
+  .nav-content .nav-links li{
+	list-style: none;
+	margin: 0 8px;
+  }
+   .nav-links li a{
+	text-decoration: none;
+	color: #000000;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 10px 4px;
+	transition: all 0.3s ease;
+  }
+   .nav-links li a:hover{
+	 color: #ac8c7d;
+   }
+   nav.sticky .nav-links li a{
+	 color: #fff;
+	 transition: all 0.4s ease;
+  }
+   nav.sticky .nav-links li a:hover{
+	color: #000000;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn {
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn a {
+    color: #ac8c7d;
+    font-size: 1rem;
+    padding: 0.2rem 1.2rem;
+    border: 1px solid #ac8c7d;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn:hover a {
+    color: #fff;
+    background: #ac8c7d;
+}
+.nav-content .nav-links .registrarse-btn {
+	background: #000;
+	font-weight: 700;
+	padding: 0;
+	border-radius: 5px;
+}
+
+.nav-content .nav-links .registrarse-btn a{
+	display: block;
+	background: #a7a7a7;
+	padding: 0.1rem 1.1rem;
+	border: 1px solid #000;
+	border-radius: 5px;
+	transform: translate3d(-4px, -4px, 0);
+	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.nav-content .nav-links .registrarse-btn a:hover  {
+	transform: translate3d(-8px, -8px, 0);
+} 
+
+
+#container{
+    margin-top: 190px;
+    margin-left: 200px;
+    
+    
+}
+
+
+.article{
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 100px;
+    padding: 10px;
+    line-height: center;
+}
+
+aside{
+    float: left;
+    width: 60%;
+    height: 80%;
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.formemp{
+    margin: 20px;
+}
+
+.inputContainer {
+    height: 45px;
+    float: right;
+    width: 40%;
+    margin-bottom: 17px;
+}
+
+.input{
+    top: 0px;
+    left: 0px;
+    height: 20px;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+.inputdesc{
+    top: 0px;
+    left: 0px;
+    height: 100px;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+
+.file-select {
+    position: relative;
+    display: list-item;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+  
+.file-select::before {
+    background-color: #dac8bf;
+    border: 2px solid #ac8c7d;
+    color: white;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    content: 'Seleccionar';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.file-select::marker{
+    color: transparent;
+}
+  
+.file-select input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 280px;
+    display: inline-block;    
+}
+  
+#src-file1::before {
+    content: 'Subir un Logo';
+}
+
+.button {
+    background-color: #ffffff;
+    border: 2px solid #ac8c7d;
+    border-radius: 5px;
+    color: #ac8c7d;
+    padding: 5px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Montserrat Alternates';
+}
+

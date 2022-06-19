@@ -5,7 +5,7 @@ import egg.proyectoFinal.entidades.Producto;
 import egg.proyectoFinal.repositorios.EmprendimientoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public void crearEmprendimiento(Emprendimiento emprendimiento, MultipartFile imagen) {
+    public void crearEmprendimiento(Emprendimiento emprendimiento) {
 
         Emprendimiento emprendimiento1 = new Emprendimiento();
 
@@ -32,14 +32,13 @@ public class EmprendimientoServicio {
         emprendimiento1.setListaProducto(emprendimiento.getListaProducto());
         emprendimiento1.setTelefonoEmprendimiento(emprendimiento.getTelefonoEmprendimiento());
         emprendimiento1.setInstagram(emprendimiento.getInstagram());
-
-        if (!imagen.isEmpty()) emprendimiento1.setLogo(imagenServicio.copiar(imagen));
+        emprendimiento1.setLogo(emprendimiento.getLogo());
 
         emprendimientoRepositorio.save(emprendimiento1);
     }
 
     @Transactional
-    public void actualizarEmprendimiento(Emprendimiento emprendimiento, MultipartFile imagen) {
+    public void actualizarEmprendimiento(Emprendimiento emprendimiento) {
         Emprendimiento emprendimiento1 = emprendimientoRepositorio.findById(emprendimiento.getIdEmprendimiento()).get();
 
         emprendimiento1.setNombreEmprendimiento(emprendimiento.getNombreEmprendimiento());

@@ -47,12 +47,12 @@ public class ProductoControlador {
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
 
-        mav.addObject("emprendimientos", productoServicio.listarProductos());
+        mav.addObject("productos", productoServicio.listarProductos());
         return mav;
     }
 
-    @GetMapping("/formulario-p")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    @GetMapping("/formulario")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView formularioCreacion(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("producto-formulario");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -68,7 +68,7 @@ public class ProductoControlador {
         return mav;
     }
 
-    @GetMapping("/formulario-p/{id}")
+    @GetMapping("/formulario/{id}")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView traerProductoPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("producto-formulario");
@@ -85,11 +85,11 @@ public class ProductoControlador {
     @PreAuthorize("hasRole('ADMIN', 'USER')")
     @PostMapping("/crear")
 
-    public RedirectView crear(Producto producto, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
+    public RedirectView crear(Producto producto, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 
         try {
-            productoServicio.crearProducto(producto, imagen);
+            productoServicio.crearProducto(producto);
             attributes.addFlashAttribute("success", "The operation has been carried out successfully");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("producto", producto);
@@ -103,11 +103,11 @@ public class ProductoControlador {
 
     @PostMapping("/actualizar")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView actualizar(Producto producto, MultipartFile imagen, RedirectAttributes attributes) {
+    public RedirectView actualizar(Producto producto, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 
         try {
-            productoServicio.actualizarProducto(producto, imagen);
+            productoServicio.actualizarProducto(producto);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("producto", producto);

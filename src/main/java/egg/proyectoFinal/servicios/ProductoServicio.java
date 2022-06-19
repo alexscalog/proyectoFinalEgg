@@ -21,7 +21,7 @@ public class ProductoServicio {
 
 
     @Transactional
-    public void crearProducto(Producto producto, MultipartFile imagen) {
+    public void crearProducto(Producto producto) {
         if (productoRepositorio.existsById(producto.getIdProducto()))
             throw new IllegalArgumentException("Error!");
 
@@ -32,13 +32,13 @@ public class ProductoServicio {
         producto1.setCategoria(producto.getCategoria());
         producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
 
-        if (!imagen.isEmpty()) producto1.setImagen(imagenServicio.copiar(imagen));
+        producto1.setImagen(producto.getImagen());
 
         productoRepositorio.save(producto1);
     }
 
     @Transactional
-    public void actualizarProducto(Producto producto, MultipartFile imagen) {
+    public void actualizarProducto(Producto producto) {
         Producto producto1 = productoRepositorio.findById(producto.getIdProducto()).get();
 
         producto1.setNombreProducto(producto.getNombreProducto());

@@ -1,44 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="productos-mostrar.css">
+    <link th:href="@{/css/productos-mostrar.css}" rel="stylesheet" />
 </head>
 
-<meta charset="utf-8">
-<title>Lista de productos</title>
-<link th:href="@{/css/productos.css}" rel="stylesheet" />
 
-
-<body>
-<header th:replace="fragmentos/header :: header"></header>
+<!-- ------------------------------------navbarrr---------------------------------------------------------------- -->
+<header>
+    <header th:replace="fragmentos/header :: header"></header>
+</header>
 
 <!-- ------------------------------------tarjetas---------------------------------------------------------------- -->
 
 <div class="container-card">
-    <div class="box">
+    <div th:if="${productos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
+        No hay ningún producto cargado.
+        <button><a th:href="@{/producto/formulario}">CREAR PRODUCTO</a></button>
+
+    </div>
+    <div class="box" th:each="producto : ${productos}">
         <div class="heading">
-            <img src="emprendimiento-1-img.jpeg" alt="">
+            <img th:src="${producto.imagen}">
             <div class="text">
-                <a href=""><h2>Lentes de sol</h2></a>
-                <h3>VETA </h3>
-                <p>Lente copado <br>
-                    Ideal para el verano</p>
+                <a href=""><h2 th:text="${producto.nombreProducto}"></h2></a>
+                <h3 th:text="${producto.nombreEmprendimiento}"></h3>
+                <p th:text="${producto.descripcionProducto}"></p>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
-
-<!--tr th:each="book : ${books}">
-    <td th:text="${book.isbn}"></td>
-    <td th:text="${book.title}"></td>
-    <td th:text="${book.year}"></td>
-    <td th:text="|${book.author.name} ${book.author.surname}|"></td>
-    <td th:text="${book.publisher.name}"></td>
-    <td><a class="btn btn-warning" th:href="@{/books/form/__${book.id}__}">Update</a></td>
-    <td>
-        <form th:action="@{/books/delete/__${book.id}__}" method="post">
-            <button class="btn btn-danger" type="submit">Delete</button>
-        </form>
-    </td-->

@@ -31,7 +31,7 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/lista")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ModelAndView listarUsuarios(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-usuarios");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);

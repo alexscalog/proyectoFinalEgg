@@ -99,11 +99,11 @@ public class EmprendimientoControlador {
 
     @PostMapping("/crear")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView crear(Emprendimiento emprendimiento, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
+    public RedirectView crear(Emprendimiento emprendimiento, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
         try {
-            emprendimientoServicio.crearEmprendimiento(emprendimiento, imagen);
+            emprendimientoServicio.crearEmprendimiento(emprendimiento);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("emprendimiento", emprendimiento);
@@ -116,11 +116,11 @@ public class EmprendimientoControlador {
 
     @PostMapping("/actualizar")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView actualizar(Emprendimiento emprendimiento, @RequestParam(required = false) MultipartFile imagen, RedirectAttributes attributes) {
+    public RedirectView actualizar(Emprendimiento emprendimiento, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
         try {
-           emprendimientoServicio.crearEmprendimiento(emprendimiento, imagen);
+           emprendimientoServicio.crearEmprendimiento(emprendimiento);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("emprendimiento", emprendimiento);
