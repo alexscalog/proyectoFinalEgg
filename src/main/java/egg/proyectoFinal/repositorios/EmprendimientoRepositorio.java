@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface EmprendimientoRepositorio extends JpaRepository<Emprendimiento, Long> {
 
-    List<Producto> findByIdEmprendimiento(String idEmprendimiento);
+    List<Producto> findByIdEmprendimiento(Long idEmprendimiento);
 
 }

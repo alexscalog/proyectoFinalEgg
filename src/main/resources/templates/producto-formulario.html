@@ -45,11 +45,12 @@
                 </div>
                 <div class="imputcontainer">
                     <label>Categoría</label> <br>
-                    <input type="text" id="CategoriaProducto" th:field="*{categoria}" class="input" placeholder="¿a que emprendimiento pertenece?">
+                    <input type="text" id="CategoriaProducto" th:field="*{categoria}" class="input" placeholder="¿a que categoría pertenece?">
                     <br>
                 </div>
                 <br>
-                <input type="submit" th:text="${accion == 'crear' ? 'Crear' : 'Actualizar'}" class="button">
+                <button th:text="${accion == 'crear' ? 'Crear' : 'Actualizar'}" type="submit"
+                        class="button"><a th:href="@{/}"></a></button>
 
             </aside>
 

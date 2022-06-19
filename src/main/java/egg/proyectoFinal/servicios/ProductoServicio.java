@@ -22,8 +22,6 @@ public class ProductoServicio {
 
     @Transactional
     public void crearProducto(Producto producto) {
-        if (productoRepositorio.existsById(producto.getIdProducto()))
-            throw new IllegalArgumentException("Error!");
 
         Producto producto1 = new Producto();
 
@@ -65,6 +63,11 @@ public class ProductoServicio {
         productoRepositorio.deleteById(idProducto);
     }
 
+    @Transactional
+    public List<Producto> productosPorEmprendimiento(Long emprendimiento){
+        return productoRepositorio.findByNombreEmprendimiento(emprendimiento);
+
+    }
 
 
 }

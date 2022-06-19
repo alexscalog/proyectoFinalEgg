@@ -37,6 +37,19 @@ public class ProductoControlador {
         return mav;
     }
 
+
+    @GetMapping("/productos-por-emprendimiento/{emprendimiento}")
+    public ModelAndView listarProductosPorEmprendimiento(HttpServletRequest request, Long emprendimiento) {
+        ModelAndView mav = new ModelAndView("lista-productos");
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
+
+        mav.addObject("productos", productoServicio.productosPorEmprendimiento(emprendimiento));
+        return mav;
+    }
+
+
     @GetMapping("/mis-productos/{id}")
     public ModelAndView listarMisProductos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("lista-emprendimientos");
@@ -82,9 +95,9 @@ public class ProductoControlador {
 
 
 
-    @PreAuthorize("hasRole('ADMIN', 'USER')")
-    @PostMapping("/crear")
 
+    @PostMapping("/crear")
+    //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public RedirectView crear(Producto producto, RedirectAttributes attributes) {
         RedirectView redirect = new RedirectView("/producto");
 

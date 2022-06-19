@@ -35,7 +35,7 @@ public class Emprendimiento {
     private String direccion;
 
     @Column(name = "telefono_emprendimiento")
-    private int telefonoEmprendimiento;
+    private Long telefonoEmprendimiento;
 
     @Column(name = "instagram")
     private String instagram;
@@ -50,7 +50,7 @@ public class Emprendimiento {
     public Emprendimiento() {
     }
 
-    public Emprendimiento(Long idEmprendimiento, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, int telefonoEmprendimiento, String instagram, Usuario usuario, List<Producto> listaProducto) {
+    public Emprendimiento(Long idEmprendimiento, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, Long telefonoEmprendimiento, String instagram, Usuario usuario, List<Producto> listaProducto) {
         this.idEmprendimiento = idEmprendimiento;
         this.nombreEmprendimiento = nombreEmprendimiento;
         this.descripcionEmprendimiento = descripcionEmprendimiento;
@@ -119,11 +119,11 @@ public class Emprendimiento {
         this.listaProducto = listaProducto;
     }
 
-    public int getTelefonoEmprendimiento() {
+    public Long getTelefonoEmprendimiento() {
         return telefonoEmprendimiento;
     }
 
-    public void setTelefonoEmprendimiento(int telefonoEmprendimiento) {
+    public void setTelefonoEmprendimiento(Long telefonoEmprendimiento) {
         this.telefonoEmprendimiento = telefonoEmprendimiento;
     }
 

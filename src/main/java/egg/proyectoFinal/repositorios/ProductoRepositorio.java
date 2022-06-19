@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Repository
 public interface ProductoRepositorio extends JpaRepository<Producto, Long> {
@@ -15,5 +15,7 @@ public interface ProductoRepositorio extends JpaRepository<Producto, Long> {
 
     List<Producto> findByCategoria(String categoria);
 
+
+    List<Producto> findByNombreEmprendimiento(Long nombreEmprendimiento);
 
 }

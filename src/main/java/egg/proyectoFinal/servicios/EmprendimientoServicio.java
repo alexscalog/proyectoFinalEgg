@@ -70,7 +70,7 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public List<Producto> productosDelEmprendimiento(String idEmprendimiento){
+    public List<Producto> productosDelEmprendimiento(Long idEmprendimiento){
         return emprendimientoRepositorio.findByIdEmprendimiento(idEmprendimiento);
     }
 }

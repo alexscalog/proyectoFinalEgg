@@ -24,7 +24,7 @@
     </div>
     <div class="box" th:each="producto : ${productos}">
         <div class="heading">
-            <img th:src="${producto.imagen}">
+            <img th:src="@{/uploads/fuego-1024x597.jpg}" width="50px">
             <div class="text">
                 <a href=""><h2 th:text="${producto.nombreProducto}"></h2></a>
                 <h3 th:text="${producto.nombreEmprendimiento}"></h3>

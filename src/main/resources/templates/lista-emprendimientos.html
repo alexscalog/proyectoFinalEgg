@@ -5,7 +5,7 @@
 
 <body>
 <header th:replace="fragmentos/header :: header"></header>
-<!--FALTA CSS PARA ESTA MIERDA O SINO APLICAR LA MISMA LOGICA A LA LISTA DE PRODUCTOS QUE HIZO MAX-->
+
 <main>
     <div class="container">
         <div class="row mt-5">
@@ -42,7 +42,7 @@
                             <td th:text="${emprendimiento.direccion}"></td>
                             <td th:text="${emprendimiento.telefonoEmprendimiento}"></td>
                             <td th:text="${emprendimiento.instagram}"></td>
-                            <td ><a th:href="@{/producto/listar-producto}">Productos</a></td><!--FALTA CONECTAR ESTA PARTE CON LA LISTA DE PRODUCTOS-->
+                            <td ><button><a th:href="@{/producto/productos-por-emprendimiento/__${emprendimiento.idEmprendimiento}__}">Productos</a></button></td>
                             <td sec:authorize="isAuthenticated()" th:text="${emprendimiento.usuario}"></td>
 
                             <td><a class="btn btn-warning" sec:authorize="isAuthenticated()" th:href="@{/emprendimiento/formulario/__${emprendimiento.idEmprendimiento}__}">Update</a></td>
