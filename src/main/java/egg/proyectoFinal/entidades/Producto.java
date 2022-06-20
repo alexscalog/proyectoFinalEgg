@@ -25,11 +25,11 @@ public class Producto {
     @Column(name = "categoria", length = 50, nullable = false)
     private String categoria;
 
-    @Column(name = "imagen", length = 50, nullable = false)
+    @Column(name = "imagen")
     private String imagen;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "nombre_emprendimiento", referencedColumnName = "id_emprendimiento", nullable = false)
+    @JoinColumn(name = "nombre_emprendimiento", referencedColumnName = "id_emprendimiento")
     private Emprendimiento nombreEmprendimiento;
 
     public Producto() {

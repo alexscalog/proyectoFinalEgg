@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -49,17 +50,28 @@ public class EmprendimientoControlador {
     }
 
 
-    @GetMapping("/mis-emprendimientos/{id}")
-    public ModelAndView listarMisEmprendimientos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
-        ModelAndView mav = new ModelAndView("lista-emprendimientos");
+    /*@GetMapping("/mis-productos")
+    public ModelAndView listarMisProductos(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("mis-productos");
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
-        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
+
+        mav.addObject("emprendimientos", emprendimientoServicio.traerProductosPorEmprendimiento());
+        return mav;
+    }*/
+
+    @GetMapping("/mis-productos/{id}")
+    public ModelAndView listarMisEmprendimientos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
+        ModelAndView mav = new ModelAndView("mis-productos");
+
+        //if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
 
-        mav.addObject("emprendimientos", emprendimientoServicio.listarEmprendimientos());
+        mav.addObject("emprendimientos", emprendimientoServicio.traerProductosPorEmprendimiento(id));
         return mav;
     }
 
@@ -98,11 +110,11 @@ public class EmprendimientoControlador {
 
     @PostMapping("/crear")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView crear(Emprendimiento emprendimiento, RedirectAttributes attributes) {
-        RedirectView redirect = new RedirectView("/emprendimiento");
+    public RedirectView crear(Emprendimiento emprendimiento, RedirectAttributes attributes, @RequestParam(required = false) MultipartFile logoEmprendimiento) {
+        RedirectView redirect = new RedirectView("/emprendimiento/lista");
 
         try {
-            emprendimientoServicio.crearEmprendimiento(emprendimiento);
+            emprendimientoServicio.crearEmprendimiento(emprendimiento, logoEmprendimiento);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("emprendimiento", emprendimiento);
@@ -115,11 +127,11 @@ public class EmprendimientoControlador {
 
     @PostMapping("/actualizar")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView actualizar(Emprendimiento emprendimiento, RedirectAttributes attributes) {
+    public RedirectView actualizar(Emprendimiento emprendimiento, RedirectAttributes attributes, @RequestParam(required = false) MultipartFile logoEmprendimiento) {
         RedirectView redirect = new RedirectView("/emprendimiento");
 
         try {
-           emprendimientoServicio.crearEmprendimiento(emprendimiento);
+           emprendimientoServicio.actualizarEmprendimiento(emprendimiento, logoEmprendimiento);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("emprendimiento", emprendimiento);

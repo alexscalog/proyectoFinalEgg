@@ -5,6 +5,7 @@ import egg.proyectoFinal.entidades.Producto;
 import egg.proyectoFinal.repositorios.EmprendimientoRepositorio;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public void crearEmprendimiento(Emprendimiento emprendimiento) {
+    public void crearEmprendimiento(Emprendimiento emprendimiento, MultipartFile logoEmprendimiento) {
 
         Emprendimiento emprendimiento1 = new Emprendimiento();
 
@@ -32,23 +33,23 @@ public class EmprendimientoServicio {
         emprendimiento1.setListaProducto(emprendimiento.getListaProducto());
         emprendimiento1.setTelefonoEmprendimiento(emprendimiento.getTelefonoEmprendimiento());
         emprendimiento1.setInstagram(emprendimiento.getInstagram());
-        emprendimiento1.setLogo(emprendimiento.getLogo());
+        if (!logoEmprendimiento.isEmpty()) emprendimiento1.setLogo(imagenServicio.copiar(logoEmprendimiento));
 
         emprendimientoRepositorio.save(emprendimiento1);
     }
 
     @Transactional
-    public void actualizarEmprendimiento(Emprendimiento emprendimiento) {
+    public void actualizarEmprendimiento(Emprendimiento emprendimiento, MultipartFile logoEmprendimiento) {
         Emprendimiento emprendimiento1 = emprendimientoRepositorio.findById(emprendimiento.getIdEmprendimiento()).get();
 
         emprendimiento1.setNombreEmprendimiento(emprendimiento.getNombreEmprendimiento());
         emprendimiento1.setDescripcionEmprendimiento(emprendimiento.getDescripcionEmprendimiento());
-        emprendimiento1.setLogo(emprendimiento.getLogo());
         emprendimiento1.setLocalidad(emprendimiento.getLocalidad());
         emprendimiento1.setDireccion(emprendimiento.getDireccion());
         emprendimiento1.setListaProducto(emprendimiento.getListaProducto());
         emprendimiento1.setTelefonoEmprendimiento(emprendimiento.getTelefonoEmprendimiento());
         emprendimiento1.setInstagram(emprendimiento.getInstagram());
+        if (!logoEmprendimiento.isEmpty()) emprendimiento1.setLogo(imagenServicio.copiar(logoEmprendimiento));
 
 
         emprendimientoRepositorio.save(emprendimiento1);
@@ -70,7 +71,7 @@ public class EmprendimientoServicio {
     }
 
     @Transactional
-    public List<Producto> productosDelEmprendimiento(Long idEmprendimiento){
-        return emprendimientoRepositorio.findByIdEmprendimiento(idEmprendimiento);
+    public List<Producto> traerProductosPorEmprendimiento(Long id){
+        return emprendimientoRepositorio.traerProductosPorEmprendimiento(id);
     }
 }

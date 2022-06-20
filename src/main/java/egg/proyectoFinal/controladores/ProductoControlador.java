@@ -2,6 +2,7 @@ package egg.proyectoFinal.controladores;
 
 
 import egg.proyectoFinal.entidades.Producto;
+import egg.proyectoFinal.servicios.EmprendimientoServicio;
 import egg.proyectoFinal.servicios.ProductoServicio;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,11 @@ import java.util.Map;
 public class ProductoControlador {
 
     private final ProductoServicio productoServicio;
+    private final EmprendimientoServicio emprendimientoServicio;
 
-    public ProductoControlador(ProductoServicio productoServicio) {
+    public ProductoControlador(ProductoServicio productoServicio, EmprendimientoServicio emprendimientoServicio) {
         this.productoServicio = productoServicio;
+        this.emprendimientoServicio = emprendimientoServicio;
     }
 
     @GetMapping("/listar-productos")
@@ -76,7 +79,7 @@ public class ProductoControlador {
         } else {
             mav.addObject("producto", new Producto());
         }
-
+        mav.addObject("emprendimientos", emprendimientoServicio.listarEmprendimientos());
         mav.addObject("accion", "crear");
         return mav;
     }
@@ -98,11 +101,11 @@ public class ProductoControlador {
 
     @PostMapping("/crear")
     //@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public RedirectView crear(Producto producto, RedirectAttributes attributes) {
-        RedirectView redirect = new RedirectView("/producto");
+    public RedirectView crear(Producto producto, RedirectAttributes attributes, @RequestParam(required = false) MultipartFile imagenProducto) {
+        RedirectView redirect = new RedirectView("/producto/listar-productos");
 
         try {
-            productoServicio.crearProducto(producto);
+            productoServicio.crearProducto(producto, imagenProducto);
             attributes.addFlashAttribute("success", "The operation has been carried out successfully");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("producto", producto);
@@ -116,11 +119,11 @@ public class ProductoControlador {
 
     @PostMapping("/actualizar")
     @PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public RedirectView actualizar(Producto producto, RedirectAttributes attributes) {
+    public RedirectView actualizar(Producto producto, RedirectAttributes attributes, @RequestParam(required = false) MultipartFile imagenProducto) {
         RedirectView redirect = new RedirectView("/producto");
 
         try {
-            productoServicio.actualizarProducto(producto);
+            productoServicio.actualizarProducto(producto, imagenProducto);
             attributes.addFlashAttribute("exito", "La operación fue realizada con éxito.");
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("producto", producto);

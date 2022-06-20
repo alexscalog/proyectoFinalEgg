@@ -18,7 +18,7 @@ public class Emprendimiento {
     @Column(name = "id_emprendimiento")
     private Long idEmprendimiento;
 
-    @Column(name = "nombre_emprendimiento", length = 50, nullable = false)
+    @Column(name = "emprendimiento_nombre", length = 50, nullable = false)
     private String nombreEmprendimiento;
 
     @Lob
@@ -40,7 +40,7 @@ public class Emprendimiento {
     @Column(name = "instagram")
     private String instagram;
 
-    @ManyToOne(fetch = EAGER)
+    @OneToOne(fetch = EAGER)
     @JoinColumn(name = "emprendimiento_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 

@@ -21,7 +21,7 @@ public class ProductoServicio {
 
 
     @Transactional
-    public void crearProducto(Producto producto) {
+    public void crearProducto(Producto producto, MultipartFile imagenProducto) {
 
         Producto producto1 = new Producto();
 
@@ -30,20 +30,21 @@ public class ProductoServicio {
         producto1.setCategoria(producto.getCategoria());
         producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
 
-        producto1.setImagen(producto.getImagen());
+        if (!imagenProducto.isEmpty()) producto1.setImagen(imagenServicio.copiar(imagenProducto));
+
 
         productoRepositorio.save(producto1);
     }
 
     @Transactional
-    public void actualizarProducto(Producto producto) {
+    public void actualizarProducto(Producto producto, MultipartFile imagenProducto) {
         Producto producto1 = productoRepositorio.findById(producto.getIdProducto()).get();
 
         producto1.setNombreProducto(producto.getNombreProducto());
         producto1.setDescripcionProducto(producto.getDescripcionProducto());
         producto1.setCategoria(producto.getCategoria());
-        producto1.setImagen(producto.getImagen());
         producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
+        if (!imagenProducto.isEmpty()) producto1.setImagen(imagenServicio.copiar(imagenProducto));
 
         productoRepositorio.save(producto1);
     }

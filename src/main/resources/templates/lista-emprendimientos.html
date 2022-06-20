@@ -1,68 +1,62 @@
+
+
+
+
+
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-
-
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/perfil.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Emprendimientos</title>
+</head>
 <body>
+
 <header th:replace="fragmentos/header :: header"></header>
 
-<main>
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col">
-                <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
+<div class="col">
+    <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
 
-                <div th:if="${emprendimientos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
-                    Cree un emprendimiento.
-                    <a th:href="@{/emprendimiento/formulario}" class="alert-link">Crear emprendimiento.</a>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div th:if="${emprendimientos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
+        Cree un emprendimiento.
+        <a th:href="@{/emprendimiento/formulario}" class="alert-link">Crear emprendimiento.</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+<div class="container-perfil" th:each="emprendimiento : ${emprendimientos}">
+    <div class="box">
+        <div class="heading">
+            <img th:src="${emprendimiento.logo} ? @{/uploads/__${emprendimiento.logo}__} : @{/uploads/defaultemprendimiento.jpg}" alt="Formato de imagen no compatible.">
+            <div class="text">
+                <h1 th:text="${emprendimiento.nombreEmprendimiento}"></h1>
+                <p th:text="${emprendimiento.descripcionEmprendimiento}"></p>
+                <p class="telefono" th:text="${emprendimiento.telefonoEmprendimiento}">
+                    Teléfono:
+                </p>
+                <p class="direccion" th:text="${emprendimiento.direccion}">
+                    Dirección:
+                </p>
+                <p class="localidad" th:text="${emprendimiento.localidad}">
+                    Localidad:
+                </p>
+                <a class="redes" th:text="${emprendimiento.instagram}"></a>
+
+                <div class="boton">
+                    <a th:href="@{/producto/productos-por-emprendimiento/__${emprendimiento.idEmprendimiento}__}">VER PRODUCTOS</a>
                 </div>
 
-                <div th:unless="${emprendimientos.isEmpty()}" class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead>
-                        <tr class="table-dark">
-                            <th>Logo del emprendimiento</th>
-                            <th>Nombre del emprendimiento</th>
-                            <th>Descripcion</th>
-                            <th>Localidad</th>
-                            <th>Direccion</th>
-                            <th>Teléfono de contacto</th>
-                            <th>Instagram</th>
-                            <th>Productos</th>
-                            <th sec:authorize="isAuthenticated()">Usuario</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="emprendimiento : ${emprendimientos}">
-                            <td ><img th:src="${emprendimiento.logo}" width="50px"></td>
-                            <td th:text="${emprendimiento.nombreEmprendimiento}"></td>
-                            <td th:text="${emprendimiento.descripcionEmprendimiento}"></td>
-                            <td th:text="${emprendimiento.localidad}"></td>
-                            <td th:text="${emprendimiento.direccion}"></td>
-                            <td th:text="${emprendimiento.telefonoEmprendimiento}"></td>
-                            <td th:text="${emprendimiento.instagram}"></td>
-                            <td ><button><a th:href="@{/producto/productos-por-emprendimiento/__${emprendimiento.idEmprendimiento}__}">Productos</a></button></td>
-                            <td sec:authorize="isAuthenticated()" th:text="${emprendimiento.usuario}"></td>
 
-                            <td><a class="btn btn-warning" sec:authorize="isAuthenticated()" th:href="@{/emprendimiento/formulario/__${emprendimiento.idEmprendimiento}__}">Update</a></td>
-                            <td>
-                                <form sec:authorize="hasRole('ADMIN')" th:action="@{/emprendimiento/borrar/__${emprendimiento.idEmprendimiento}__}" method="post">
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
+
         </div>
     </div>
-</main>
+</div>
+</div>
+</div>
 
 
-
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
-
 </html>

@@ -1,9 +1,11 @@
 package egg.proyectoFinal.entidades;
 
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 
-import java.util.List;
+
 
 
 import static javax.persistence.EnumType.STRING;
@@ -33,9 +35,6 @@ public class Usuario {
     @Column(name = "telefono", nullable = false)
     private Long telefono;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Emprendimiento>listaEmprendimientos;
-
     @Enumerated(STRING)
     @Column(name = "usuario_rol", nullable = false)
     private Rol rol;
@@ -45,20 +44,15 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, Long telefono, List<Emprendimiento> listaEmprendimientos, Rol rol) {
+    public Usuario(Long id, String nombreUsuario, String apellidoUsuario, String email, String contrasenia, Long telefono, Rol rol) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.email = email;
         this.contrasenia = contrasenia;
         this.telefono = telefono;
-        this.listaEmprendimientos = listaEmprendimientos;
         this.rol = rol;
     }
-
-
-
-
 
     public Long getId() {
         return id;
@@ -106,14 +100,6 @@ public class Usuario {
 
     public void setTelefono(Long telefono) {
         this.telefono = telefono;
-    }
-
-    public List<Emprendimiento> getListaEmprendimientos() {
-        return listaEmprendimientos;
-    }
-
-    public void setListaEmprendimientos(List<Emprendimiento> listaEmprendimientos) {
-        this.listaEmprendimientos = listaEmprendimientos;
     }
 
     public Rol getRol() {
