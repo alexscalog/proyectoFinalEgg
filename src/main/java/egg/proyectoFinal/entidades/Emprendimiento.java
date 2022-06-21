@@ -1,12 +1,15 @@
 package egg.proyectoFinal.entidades;
 
 
+
+
 import javax.persistence.*;
 
 
-import java.util.List;
+
 
 import static javax.persistence.FetchType.EAGER;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -44,13 +47,13 @@ public class Emprendimiento {
     @JoinColumn(name = "emprendimiento_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "nombreEmprendimiento")
-    private List<Producto>listaProducto;
+
+
 
     public Emprendimiento() {
     }
 
-    public Emprendimiento(Long idEmprendimiento, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, Long telefonoEmprendimiento, String instagram, Usuario usuario, List<Producto> listaProducto) {
+    public Emprendimiento(Long idEmprendimiento, String nombreEmprendimiento, String descripcionEmprendimiento, String logo, String localidad, String direccion, Long telefonoEmprendimiento, String instagram, Usuario usuario) {
         this.idEmprendimiento = idEmprendimiento;
         this.nombreEmprendimiento = nombreEmprendimiento;
         this.descripcionEmprendimiento = descripcionEmprendimiento;
@@ -60,7 +63,7 @@ public class Emprendimiento {
         this.telefonoEmprendimiento = telefonoEmprendimiento;
         this.instagram = instagram;
         this.usuario = usuario;
-        this.listaProducto = listaProducto;
+
     }
 
     public Long getIdEmprendimiento() {
@@ -111,14 +114,6 @@ public class Emprendimiento {
         this.direccion = direccion;
     }
 
-    public List<Producto> getListaProducto() {
-        return listaProducto;
-    }
-
-    public void setListaProducto(List<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
-    }
-
     public Long getTelefonoEmprendimiento() {
         return telefonoEmprendimiento;
     }
@@ -142,4 +137,6 @@ public class Emprendimiento {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
 }

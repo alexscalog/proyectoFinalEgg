@@ -12,8 +12,12 @@ import java.util.List;
 @Repository
 public interface EmprendimientoRepositorio extends JpaRepository<Emprendimiento, Long> {
 
-    @Query(value = "SELECT * FROM producto p JOIN emprendimiento e ON p.nombre_emprendimiento=e.id_emprendimiento WHERE emprendimiento_usuario=?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM producto WHERE id_emprendimiento_producto=?1", nativeQuery = true)
     List<Producto> traerProductosPorEmprendimiento(Long id);
+
+
+    //@Query( value = "SELEC * FROM emprendimiento WHERE ")
+    //List<Emprendimiento> traerEmprendimientosPorSesion();
 
 
 

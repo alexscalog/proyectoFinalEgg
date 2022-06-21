@@ -69,8 +69,12 @@ public class ProductoControlador {
 
     @GetMapping("/formulario")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public ModelAndView formularioCreacion(HttpServletRequest request) {
+    public ModelAndView formularioCreacion(HttpServletRequest request, HttpSession session) {
         ModelAndView mav = new ModelAndView("producto-formulario");
+
+        Producto producto = new Producto();
+
+
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (inputFlashMap != null) {

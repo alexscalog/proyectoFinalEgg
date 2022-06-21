@@ -28,7 +28,7 @@ public class ProductoServicio {
         producto1.setNombreProducto(producto.getNombreProducto());
         producto1.setDescripcionProducto(producto.getDescripcionProducto());
         producto1.setCategoria(producto.getCategoria());
-        producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
+        producto1.setEmprendimiento(producto.getEmprendimiento());
 
         if (!imagenProducto.isEmpty()) producto1.setImagen(imagenServicio.copiar(imagenProducto));
 
@@ -43,7 +43,7 @@ public class ProductoServicio {
         producto1.setNombreProducto(producto.getNombreProducto());
         producto1.setDescripcionProducto(producto.getDescripcionProducto());
         producto1.setCategoria(producto.getCategoria());
-        producto1.setNombreEmprendimiento(producto.getNombreEmprendimiento());
+        producto1.setEmprendimiento(producto.getEmprendimiento());
         if (!imagenProducto.isEmpty()) producto1.setImagen(imagenServicio.copiar(imagenProducto));
 
         productoRepositorio.save(producto1);
@@ -66,7 +66,7 @@ public class ProductoServicio {
 
     @Transactional
     public List<Producto> productosPorEmprendimiento(Long emprendimiento){
-        return productoRepositorio.findByNombreEmprendimiento(emprendimiento);
+        return productoRepositorio.findByEmprendimiento(emprendimiento);
 
     }
 

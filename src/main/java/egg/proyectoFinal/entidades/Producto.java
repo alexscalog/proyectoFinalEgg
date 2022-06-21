@@ -29,19 +29,19 @@ public class Producto {
     private String imagen;
 
     @ManyToOne(fetch = EAGER)
-    @JoinColumn(name = "nombre_emprendimiento", referencedColumnName = "id_emprendimiento")
-    private Emprendimiento nombreEmprendimiento;
+    @JoinColumn(name = "id_emprendimiento_producto", referencedColumnName = "id_emprendimiento")
+    private Emprendimiento emprendimiento;
 
     public Producto() {
     }
 
-    public Producto(Long idProducto, String nombreProducto, String descripcionProducto, String categoria, String imagen, Emprendimiento nombreEmprendimiento) {
+    public Producto(Long idProducto, String nombreProducto, String descripcionProducto, String categoria, String imagen, Emprendimiento emprendimiento) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
         this.categoria = categoria;
         this.imagen = imagen;
-        this.nombreEmprendimiento = nombreEmprendimiento;
+        this.emprendimiento = emprendimiento;
     }
 
     public Long getIdProducto() {
@@ -84,11 +84,11 @@ public class Producto {
         this.imagen = imagen;
     }
 
-    public Emprendimiento getNombreEmprendimiento() {
-        return nombreEmprendimiento;
+    public Emprendimiento getEmprendimiento() {
+        return emprendimiento;
     }
 
-    public void setNombreEmprendimiento(Emprendimiento nombreEmprendimiento) {
-        this.nombreEmprendimiento = nombreEmprendimiento;
+    public void setEmprendimiento(Emprendimiento emprendimiento) {
+        this.emprendimiento = emprendimiento;
     }
 }

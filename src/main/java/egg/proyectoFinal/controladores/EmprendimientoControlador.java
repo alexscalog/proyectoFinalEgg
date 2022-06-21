@@ -2,7 +2,9 @@ package egg.proyectoFinal.controladores;
 
 
 import egg.proyectoFinal.entidades.Emprendimiento;
+import egg.proyectoFinal.entidades.Usuario;
 import egg.proyectoFinal.servicios.EmprendimientoServicio;
+import egg.proyectoFinal.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,13 @@ public class EmprendimientoControlador {
 
 
     private final EmprendimientoServicio emprendimientoServicio;
+    private final UsuarioServicio usuarioServicio;
 
 
     @Autowired
-    public EmprendimientoControlador(EmprendimientoServicio emprendimientoServicio) {
+    public EmprendimientoControlador(EmprendimientoServicio emprendimientoServicio, UsuarioServicio usuarioServicio) {
         this.emprendimientoServicio = emprendimientoServicio;
+        this.usuarioServicio = usuarioServicio;
     }
 
     @GetMapping("/perfil/{id}")
@@ -50,19 +54,8 @@ public class EmprendimientoControlador {
     }
 
 
-    /*@GetMapping("/mis-productos")
-    public ModelAndView listarMisProductos(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("mis-productos");
-        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-
-        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
-
-        mav.addObject("emprendimientos", emprendimientoServicio.traerProductosPorEmprendimiento());
-        return mav;
-    }*/
-
     @GetMapping("/mis-productos/{id}")
-    public ModelAndView listarMisEmprendimientos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
+    public ModelAndView misProductos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("mis-productos");
 
         //if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
@@ -71,21 +64,27 @@ public class EmprendimientoControlador {
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
 
-        mav.addObject("emprendimientos", emprendimientoServicio.traerProductosPorEmprendimiento(id));
+        mav.addObject("misproductos", emprendimientoServicio.traerProductosPorEmprendimiento((Long) session.getAttribute("id")));
         return mav;
     }
 
     @GetMapping("/formulario")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public ModelAndView formularioCreacion(HttpServletRequest request) {
+    public ModelAndView formularioCreacion(HttpServletRequest request, HttpSession session) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
+        Emprendimiento emprendimiento = new Emprendimiento();
+        Usuario usuario = usuarioServicio.obtenerUsuarioPorId((Long)session.getAttribute("id"));
+
+
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
 
         if (inputFlashMap != null) {
             mav.addObject("emprendimiento", inputFlashMap.get("emprendimiento"));
             mav.addObject("excepcion", inputFlashMap.get("excepcion"));
         } else {
-            mav.addObject("emprendimiento", new Emprendimiento());
+            emprendimiento.setUsuario(usuario);
+            mav.addObject("emprendimiento", emprendimiento);
 
         }
 
