@@ -15,7 +15,7 @@
 
 
 
-<div class="container" id="home" sec:authorize="!isAuthenticated()">
+<div class="container-2" id="home" sec:authorize="!isAuthenticated()">
     <section>
         <div class="slider">
             <ul>
@@ -36,7 +36,7 @@
     </section>
 </div>
 
-<div class="container" id="logeado" sec:authorize="isAuthenticated()">
+<div class="container-2" id="logeado" sec:authorize="isAuthenticated()">
     <section>
         <div class="slider">
             <ul>
@@ -56,18 +56,17 @@
         </div>
     </section>
 
-    <div>
-        <button id="crear-emprendimiento"><a th:href="@{/emprendimiento/formulario}">Crear emprendimiento</a></button>
-    </div>
+
 
 </div>
 
 <script th:src="@{/js/validation.js}"></script>
 
 
-<footer th:replace="fragmentos/footer :: footer"></footer>
+
 </body>
 
 
+<header th:replace="fragmentos/footer :: footer"></header>
 
 </html>

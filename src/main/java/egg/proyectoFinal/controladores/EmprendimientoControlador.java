@@ -139,10 +139,10 @@ public class EmprendimientoControlador {
     }
 
     @PostMapping("/borrar/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public RedirectView borrar(@PathVariable Long id) {
+    //@PreAuthorize("hasRole('ADMIN')")
+    public RedirectView borrar(@PathVariable Long idEmprendimiento) {
         RedirectView redirect = new RedirectView("/emprendimiento");
-        emprendimientoServicio.borrarEmprendimientoPorId(id);
+        emprendimientoServicio.borrarEmprendimientoPorId(idEmprendimiento);
         return redirect;
     }/*Agregar un mensaje de alerta para que no borre directamente */
 }
