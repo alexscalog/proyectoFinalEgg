@@ -1,0 +1,65 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/perfil.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Mis emprendimientos</title>
+</head>
+<body>
+
+<header th:replace="fragmentos/header :: header"></header>
+
+<div class="col">
+    <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
+
+    <div th:if="${misemprendimientos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
+        Cree un emprendimiento.
+        <a th:href="@{/emprendimiento/formulario}" class="alert-link">Crear emprendimiento.</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="container-perfil" th:each="emprendimiento : ${misemprendimientos}">
+
+        <div class="box">
+            <div class="heading">
+                <img th:src="${emprendimiento.logo} ? @{/uploads/__${emprendimiento.logo}__} : @{/uploads/defaultemprendimiento.jpg}" alt="Formato de imagen no compatible.">
+                <div class="text">
+                    <h1 th:text="${emprendimiento.nombreEmprendimiento}"></h1>
+                    <a th:href="@{/emprendimiento/formulario/__${emprendimiento.idEmprendimiento}__}"> <i class="fa-solid fa-pen-to-square"></i></a>
+                    <p th:text="${emprendimiento.descripcionEmprendimiento}"></p>
+                    <p class="telefono" th:text="${emprendimiento.telefonoEmprendimiento}">
+                        Teléfono:
+                    </p>
+                    <p class="direccion" th:text="${emprendimiento.direccion}">
+                        Dirección:
+                    </p>
+                    <p class="localidad" th:text="${emprendimiento.localidad}">
+                        Localidad:
+                    </p>
+                    <a class="redes" th:text="${emprendimiento.instagram}"></a>
+
+                    <div class="boton">
+                        <a th:href="@{/producto/productos-por-emprendimiento/__${emprendimiento.idEmprendimiento}__}">VER PRODUCTOS</a>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://kit.fontawesome.com/a0ff895d56.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

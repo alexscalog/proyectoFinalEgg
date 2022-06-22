@@ -1,0 +1,27 @@
+footer{
+	position: absolute;
+	display: flex;
+	background-color: #000;
+	width: 100%;
+	color: #fff;
+	height: 15vh;
+	margin-top: 150vh;
+	bottom: 0;
+}
+footer img{
+	margin-top: 5px;
+	margin-left: 65px;
+
+}
+footer h4{
+	margin-top: 50px;
+	
+	margin-left: 10px;
+}
+footer p{
+	margin-top: 50px;
+	margin-left: 300px;
+	font-weight: 800;
+	
+
+}

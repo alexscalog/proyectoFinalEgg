@@ -38,7 +38,7 @@ public class AutenticacionControlador {
         ModelAndView mav = new ModelAndView("login-formulario");
 
         if (error != null) mav.addObject("error", "Email o contraseña inválidos.");
-        if (logout != null) mav.addObject("logout", "You have successfully exited the platform");
+        if (logout != null) mav.addObject("logout", "");
         if (principal != null) mav.setViewName("redirect:/");
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -54,24 +54,6 @@ public class AutenticacionControlador {
         return mav;
     }
 
-    /*@GetMapping("/registrarse")
-    public ModelAndView registrarse(HttpServletRequest request, Principal principal) {
-        ModelAndView mav = new ModelAndView("login-formulario");
-        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-
-        if (principal != null) mav.setViewName("redirect:/");
-
-        if (inputFlashMap != null) {
-            mav.addObject("excepcion", inputFlashMap.get("excepcion"));
-            mav.addObject("usuario", inputFlashMap.get("usuario"));
-        } else {
-            Usuario usuario = new Usuario();
-            usuario.setRol(Rol.USER);
-            mav.addObject("usuario", usuario);
-        }
-
-        return mav;
-    }*/
 
     @PostMapping("/registro")
     public RedirectView registro(Usuario usuario, HttpServletRequest request, RedirectAttributes attributes) {

@@ -1,0 +1,136 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Montserrat Alternates', sans-serif;
+    
+}
+body{
+}
+.contenedor{
+    display: flex;
+}
+.sub-contenedor1{
+    width: 50%;
+    height: 90vh;
+}
+.caja-producto{
+    width: 80%;
+    height: 80vh;
+    padding: 20px;
+    margin: auto;
+    margin-top: 40px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: beige;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+#imagen-producto{
+    width: 90%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 90%;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+.sub-contenedor2{
+    padding: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.informacion{
+    display: flex;
+    justify-content: flex-end;
+}
+#icono-informacion{
+    border: solid 2px #632a2a;
+    position: absolute;
+    top: 60px;
+    right: 120px;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #632a2a;
+    color: white;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.subtitulos{
+width: 80%;
+margin: auto;
+border-bottom: solid 2px black;
+position: relative;
+margin-bottom: 20px ;
+}
+
+.titulo-producto{
+    color: #632a2a;
+}
+.descripcion{
+text-align: left;
+width: 80%;
+margin: auto;
+margin-top: 0;
+}
+
+
+.contenedor-contactar{
+display: flex;
+width: 10%;
+justify-content: flex-end;
+position: absolute;
+right: 110px;
+top: 280px;
+}
+.boton-contactar{
+    border: solid 2px black;
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #632a2a;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 7px 8px 5px 0px rgba(0,0,0,0.75);
+}
+.boton-contactar a{
+    color: white;
+}
+
+.productos-similares{
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+}
+.producto-similar{
+    padding: 20px;
+    border: solid 2px #632a2a;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: beige;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    margin-bottom: 10px;
+}
+
+#similares{
+    width: 200px;
+    height: 200px;
+    border: solid 2px #632a2a;
+    border-radius: 10px;
+    
+}

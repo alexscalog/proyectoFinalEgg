@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,17 +19,20 @@
 <div class="container-card">
 
 
-    <div class="box" th:each="producto : ${misproductos}">
-        <div class="heading">
-            <img th:src="${producto.imagen} ? @{/uploads/__${producto.imagen}__} : @{/uploads/default.jpg}"
-                 alt="Formato de imagen incompatible">
-            <div class="text">
-                <a href=""><h2 th:text="${producto.nombreProducto}"></h2></a>
-                <h3 th:text="${producto.nombreEmprendimiento}"></h3>
-                <p th:text="${producto.descripcionProducto}"></p>
-            </div>
+</div>
+<div class="box" th:each="producto : ${productos}">
+    <div class="heading">
+        <img th:src="${producto.imagen} ? @{/uploads/__${producto.imagen}__} : @{/uploads/default.jpg}"
+             alt="Formato de imagen incompatible">
+        <div class="text">
+            <a href=""><h2 th:text="${producto.nombreProducto}"></h2></a>
+            <h3 th:text="${producto.emprendimiento.nombreEmprendimiento}"></h3>
+            <p th:text="${producto.descripcionProducto}"></p>
         </div>
     </div>
+</div>
+
+
 </div>
 </body>
 </html>

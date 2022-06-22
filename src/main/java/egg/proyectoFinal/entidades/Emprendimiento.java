@@ -44,7 +44,7 @@ public class Emprendimiento {
     private String instagram;
 
     @OneToOne(fetch = EAGER)
-    @JoinColumn(name = "emprendimiento_usuario", referencedColumnName = "id_usuario")
+    @JoinColumn(name = "id_emprendimiento_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
 
 

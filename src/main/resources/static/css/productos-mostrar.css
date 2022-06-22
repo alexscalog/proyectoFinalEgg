@@ -66,7 +66,7 @@ nav{
     margin-right: 0.4rem;
 }
 
-.nav-content .nav-links .iniciar-sesion-btn a {
+.nav-content .nav-links .iniciar-sesion-btn a , .buscar-btn{
     color: #ac8c7d;
     font-size: 1rem;
     padding: 0.2rem 1.2rem;
@@ -176,5 +176,7 @@ nav{
   letter-spacing: 1px;
   color: #000000;
 }
+
+
 
 

@@ -29,6 +29,21 @@ public class ProductoControlador {
         this.emprendimientoServicio = emprendimientoServicio;
     }
 
+
+
+    @GetMapping("/detalle/{id}")
+    public ModelAndView productoDetalle(HttpServletRequest request, @PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("producto-detalle");
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
+
+        mav.addObject("producto", productoServicio.obtenerProductoPorId(id));
+        return mav;
+    }
+
+
+
     @GetMapping("/listar-productos")
     public ModelAndView listarProductos(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("lista-productos");
@@ -41,31 +56,29 @@ public class ProductoControlador {
     }
 
 
-    @GetMapping("/productos-por-emprendimiento/{emprendimiento}")
-    public ModelAndView listarProductosPorEmprendimiento(HttpServletRequest request, Long emprendimiento) {
+    @GetMapping("/productos-por-emprendimiento/{id}")
+    public ModelAndView listarProductosPorEmprendimiento(HttpServletRequest request, @PathVariable Long id) {
         ModelAndView mav = new ModelAndView("lista-productos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
 
-        mav.addObject("productos", productoServicio.productosPorEmprendimiento(emprendimiento));
+        mav.addObject("productos", productoServicio.productosPorEmprendimiento(id));
         return mav;
     }
 
-
-    @GetMapping("/mis-productos/{id}")
-    public ModelAndView listarMisProductos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
-        ModelAndView mav = new ModelAndView("lista-emprendimientos");
-
-        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
-
+    @GetMapping("/productos-por-categoria")
+    public ModelAndView listarProductosPorCategoria(HttpServletRequest request, @RequestParam String categoria) {
+        ModelAndView mav = new ModelAndView("lista-productos");
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
 
-        mav.addObject("productos", productoServicio.listarProductos());
+        mav.addObject("productos", productoServicio.productosPorCategoria(categoria));
+        mav.addObject("categoria", categoria);
         return mav;
     }
+
 
     @GetMapping("/formulario")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
@@ -99,6 +112,8 @@ public class ProductoControlador {
         mav.addObject("accion", "actualizar");
         return mav;
     }
+
+
 
 
 

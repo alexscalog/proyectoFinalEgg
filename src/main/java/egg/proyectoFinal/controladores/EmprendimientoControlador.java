@@ -54,17 +54,16 @@ public class EmprendimientoControlador {
     }
 
 
-    @GetMapping("/mis-productos/{id}")
-    public ModelAndView misProductos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
-        ModelAndView mav = new ModelAndView("mis-productos");
+    @GetMapping("/mis-emprendimientos/{id}")
+    public ModelAndView misEmprendimientos(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
+        ModelAndView mav = new ModelAndView("mis-emprendimientos");
 
-        //if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
 
-        mav.addObject("misproductos", emprendimientoServicio.traerProductosPorEmprendimiento((Long) session.getAttribute("id")));
+        mav.addObject("misemprendimientos", emprendimientoServicio.traerEmprendimientosPorSesion(id));
         return mav;
     }
 
@@ -73,7 +72,7 @@ public class EmprendimientoControlador {
     public ModelAndView formularioCreacion(HttpServletRequest request, HttpSession session) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
         Emprendimiento emprendimiento = new Emprendimiento();
-        Usuario usuario = usuarioServicio.obtenerUsuarioPorId((Long)session.getAttribute("id"));
+
 
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
@@ -83,7 +82,7 @@ public class EmprendimientoControlador {
             mav.addObject("emprendimiento", inputFlashMap.get("emprendimiento"));
             mav.addObject("excepcion", inputFlashMap.get("excepcion"));
         } else {
-            emprendimiento.setUsuario(usuario);
+
             mav.addObject("emprendimiento", emprendimiento);
 
         }
@@ -93,11 +92,9 @@ public class EmprendimientoControlador {
     }
 
     @GetMapping("/formulario/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public ModelAndView traerEmprendimientoPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("emprendimiento-formulario");
-
-        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
 
         mav.addObject("emprendimiento", emprendimientoServicio.obtenerEmprendimientoPorId(id));
         mav.addObject("accion", "actualizar");
@@ -125,9 +122,9 @@ public class EmprendimientoControlador {
     }
 
     @PostMapping("/actualizar")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView actualizar(Emprendimiento emprendimiento, RedirectAttributes attributes, @RequestParam(required = false) MultipartFile logoEmprendimiento) {
-        RedirectView redirect = new RedirectView("/emprendimiento");
+        RedirectView redirect = new RedirectView("/emprendimiento/mis-emprendimientos/" + emprendimiento.getUsuario().getId());
 
         try {
            emprendimientoServicio.actualizarEmprendimiento(emprendimiento, logoEmprendimiento);

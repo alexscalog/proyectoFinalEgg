@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+
+
+<footer th:fragment="footer" xmlns:th="http://www.thymeleaf.org">
+    <span th:text="${session.id != null} ? |${session.email} - ${session.rol}| : 'Mis Accesorios'"></span>
+    <h4>&copy; 2022</h4>
+
+</footer>

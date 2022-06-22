@@ -16,8 +16,8 @@ public interface EmprendimientoRepositorio extends JpaRepository<Emprendimiento,
     List<Producto> traerProductosPorEmprendimiento(Long id);
 
 
-    //@Query( value = "SELEC * FROM emprendimiento WHERE ")
-    //List<Emprendimiento> traerEmprendimientosPorSesion();
+    @Query( value = "SELECT * FROM emprendimiento WHERE id_emprendimiento_usuario=?1", nativeQuery = true)
+    List<Emprendimiento> traerEmprendimientosPorSesion(Long id);
 
 
 

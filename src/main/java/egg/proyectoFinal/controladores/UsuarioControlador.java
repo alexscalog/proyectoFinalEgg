@@ -108,7 +108,7 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/borrar/{id}")
-    @PreAuthorize("hasRole('ADMIN')") //PREGUNTAR SOBRE PERMISOS DE ELIMINACION USUARIO/ADMIN
+    @PreAuthorize("hasRole('ADMIN')")
     public RedirectView borrar(@PathVariable Long id) {
         RedirectView redirect = new RedirectView("/usuario");
         usuarioServicio.borrarUsuarioPorId(id);

@@ -12,10 +12,12 @@ import java.util.List;
 @Repository
 public interface ProductoRepositorio extends JpaRepository<Producto, Long> {
 
+    @Query(value = "SELECT * FROM producto WHERE categoria LIKE %?1%", nativeQuery = true)
+    List<Producto> findAll(String categoria);
 
-    List<Producto> findByCategoria(String categoria);
+    @Query(value = "SELECT * FROM producto WHERE id_emprendimiento_producto=?1", nativeQuery = true)
+    List<Producto> findByEmprendimiento(Long id);
 
 
-    List<Producto> findByEmprendimiento(Long emprendimiento);
 
 }

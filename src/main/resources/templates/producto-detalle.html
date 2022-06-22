@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Accesorios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2e3686342e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/detalleProducto.css}">
+    <link th:href="@{/css/productos-mostrar.css}" rel="stylesheet" />
 </head>
 <body>
 
+<header th:replace="fragmentos/header :: header"></header>
+
+<main>
+    <div class="contenedor">
+        <div class="sub-contenedor1">
+            <div class="caja-producto">
+                <img id = "imagen-producto" th:src="${producto.imagen} ? @{/uploads/__${producto.imagen}__} : @{/uploads/default.jpg}"
+                     alt="Formato de imagen incompatible">
+            </div>
+        </div>
+        <div class="sub-contenedor2">
+            <div class="informacion">
+                <a href="#"> <i id = "icono-informacion" class="fa-solid fa-info"></i></a>
+
+            </div>
+            <div class="subtitulos">
+                <h2 class = "titulo-producto"></h2>
+                <h2 class="titulo-emprendimiento" th:text="${producto.emprendimiento.nombreEmprendimiento}"></h2>
+            </div>
+            <div class="descripcion">
+                <p class="texto-descripcion" th:text="${producto.descripcionProducto}">
+                </p>
+            </div>
+            <div class="contenedor-contactar">
+                <div class="boton-contactar">
+                    <a href="#">CONTACTAR</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
 </body>
 </html>

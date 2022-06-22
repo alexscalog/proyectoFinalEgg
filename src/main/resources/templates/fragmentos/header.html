@@ -10,7 +10,7 @@
                 <li><a th:href="@{/emprendimiento/lista}">EMPRENDIMIENTOS</a></li>
                 <li><a th:href="@{/producto/listar-productos}">PRODUCTOS</a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="!isAuthenticated()"><a href="/autenticacion/login"><i class="fa-solid fa-user"></i></a></li>
-                <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/emprendimiento/mis-productos/${usuario.id}}">Mis productos</a></li>
+                <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/emprendimiento/mis-emprendimientos/__${session.id}__}">Mis emprendimientos</a></li>
                 <li class="iniciar-sesion-btn" sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
 
             </ul>

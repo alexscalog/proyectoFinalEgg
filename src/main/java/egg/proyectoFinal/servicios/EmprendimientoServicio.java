@@ -75,4 +75,9 @@ public class EmprendimientoServicio {
     public List<Producto> traerProductosPorEmprendimiento(Long id){
         return emprendimientoRepositorio.traerProductosPorEmprendimiento(id);
     }
-}
+
+    @Transactional
+    public List<Emprendimiento> traerEmprendimientosPorSesion(Long id) {
+        return emprendimientoRepositorio.traerEmprendimientosPorSesion(id);
+    }
+    }

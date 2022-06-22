@@ -65,8 +65,14 @@ public class ProductoServicio {
     }
 
     @Transactional
-    public List<Producto> productosPorEmprendimiento(Long emprendimiento){
-        return productoRepositorio.findByEmprendimiento(emprendimiento);
+    public List<Producto> productosPorEmprendimiento(Long id){
+        return productoRepositorio.findByEmprendimiento(id);
+
+    }
+
+    @Transactional
+    public List<Producto> productosPorCategoria(String categoria){
+        return productoRepositorio.findAll(categoria);
 
     }
 
