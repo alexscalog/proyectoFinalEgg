@@ -15,7 +15,7 @@ public interface ProductoRepositorio extends JpaRepository<Producto, Long> {
     @Query(value = "SELECT * FROM producto WHERE categoria LIKE %?1%", nativeQuery = true)
     List<Producto> findAll(String categoria);
 
-    @Query(value = "SELECT * FROM producto WHERE id_emprendimiento_producto=?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM producto WHERE id_emprendimiento_producto=?1 AND producto_eliminado=false;", nativeQuery = true)
     List<Producto> findByEmprendimiento(Long id);
 
 

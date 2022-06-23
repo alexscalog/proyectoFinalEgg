@@ -4,7 +4,7 @@
 
 
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,14 @@
 
 <header th:replace="fragmentos/header :: header"></header>
 
+
+
+
+<div class="container-crear" >
+    <a th:href="@{/emprendimiento/formulario}" ><h3>Crear Emprendimiento</h3></a>
+
+</div>
+
 <div class="col">
     <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
 
@@ -24,6 +32,15 @@
         Cree un emprendimiento.
         <a th:href="@{/emprendimiento/formulario}" class="alert-link">Crear emprendimiento.</a>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="box" sec:authorize="isAuthenticated()" th:if="${emprendimientoId != null}">
+
+        <div class="text"  >
+            <a th:href="@{/emprendimiento/formulario/__${session.id}__}"><h4> + </h4></a>
+
+
+        </div>
     </div>
 
     <div class="container-perfil" th:each="emprendimiento : ${misemprendimientos}">

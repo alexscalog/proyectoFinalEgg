@@ -139,9 +139,9 @@ public class ProductoControlador {
 
 
     @PostMapping("/actualizar")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView actualizar(Producto producto, RedirectAttributes attributes, @RequestParam(required = false) MultipartFile imagenProducto) {
-        RedirectView redirect = new RedirectView("/producto");
+        RedirectView redirect = new RedirectView("/producto/productos-por-emprendimiento/"+producto.getEmprendimiento().getIdEmprendimiento());
 
         try {
             productoServicio.actualizarProducto(producto, imagenProducto);
@@ -155,12 +155,12 @@ public class ProductoControlador {
 
     }
 
-    @PostMapping("/borrar/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public RedirectView borrar(@PathVariable Long id) {
-        RedirectView redirect = new RedirectView("/producto");
-        productoServicio.borrarProductoPorId(id);
+    @PostMapping("/borrar/{idProducto}")
+    //@PreAuthorize("hasAnyRole('ADMIN')")
+    public RedirectView borrar(Producto producto, @PathVariable Long idProducto) {
+        RedirectView redirect = new RedirectView("/producto/productos-por-emprendimiento");
+        productoServicio.borrarProductoPorId(idProducto);
         return redirect;
-    }/*Agregar un mensaje de alerta para que no borre directamente */
+    }
 
 }

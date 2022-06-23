@@ -1,11 +1,17 @@
 *{
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 body{
-    background: white;
-    font-family: 'Montserrat Alternates';
+    background-image: url(/img/fondo-login.jpg);
+        background-size: cover;
+        background-repeat:no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+
+        font-family: 'Montserrat Alternates';
 }
 
 
@@ -110,41 +116,49 @@ nav{
 
 
 
+
 #container{
-    margin-top: 190px;
-    margin-left: 170px;
-    width: 100%;
+    width: 79%;
+    margin-top: 170px;
+    margin-left: 160px;
     float: left;
+    background-color: #ffffffc7;
+
 }
 
-.FormProduct{
+#container h3{
+    
+    margin-left: 30px;
+    padding-top: 10px;
+}
+
+.article{
+    
     float: left;
-    margin: 20px;
-    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 100px;
+    padding: 10px;
+    line-height: center;
 }
 
 aside{
-    float: right;
+    float: left;
     width: 60%;
+    height: 80%;
     padding: 5px;
     margin-top: 0px;
     margin-bottom: 10px;
 }
 
-.imagen{
-    float: left;
-    width: 40%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    line-height: center;
-    background-color: #5b4af2;
+.formpro{
+    margin: 20px;
 }
 
-.inputContainer {
+.imputContainer {
     height: 45px;
     float: right;
-    width: 60%;
+    width: 40%;
     margin-bottom: 17px;
 }
 
@@ -152,7 +166,7 @@ aside{
     top: 0px;
     left: 0px;
     height: 20px;
-    width: 60%;
+    width: 90%;
     border: 1px solid black;
     border-radius: 7px;
     font-size: 16px;
@@ -166,7 +180,7 @@ aside{
     top: 0px;
     left: 0px;
     height: 100px;
-    width: 60%;
+    width: 90%;
     border: 1px solid black;
     border-radius: 7px;
     font-size: 16px;
@@ -179,8 +193,8 @@ aside{
 .file-select {
     position: relative;
     display: list-item;
-    width: 30%;
-    margin: 20px;
+    width: 80%;
+    margin: 0px;
 }
   
 .file-select::before {
@@ -188,7 +202,7 @@ aside{
     border: 2px solid #ac8c7d;
     color: white;
     width: 40%;
-    min-width: 200px;
+    min-width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -203,8 +217,8 @@ aside{
   
 .file-select input[type="file"] {
     opacity: 0;
-    width: 200px;
-    height: 280px;
+    width: 280px;
+    height: 200px;
     display: inline-block;    
 }
 
@@ -214,25 +228,6 @@ aside{
   
 #src-file1::before {
     content: 'Seleccionar Imagen';
-}
-  
-/*#src-file2::before {
-    content: 'Seleccionar Archivo 2';
-}
-
-#src-file3::before {
-    content: 'Seleccionar Archivo 3';
-}
-
-#src-file4::before {
-    content: 'Seleccionar Archivo 4';
-}*/
-
-
-
-.formPro{
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .button {
@@ -246,11 +241,4 @@ aside{
     display: inline-block;
     font-size: 16px;
     font-family: 'Montserrat Alternates';
-}
-
-  
-
-
-.clearfix{
-    clear: both;
 }

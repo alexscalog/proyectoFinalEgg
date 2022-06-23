@@ -7,39 +7,16 @@
 }
 
 body{
-	background: #f6f3f2;
-
-
-}
-
-
-
-.container-crear{
-    width:30%;
-    padding:20px;
-    margin:auto;
-    margin-top:20px;
-    border:solid 2px black;
-    border-radius:10px;
-    color:#fff;
-    background:#c3a699;
-    text-align:center;
+	background-image: url("Untitled-3.svg");
+	background-repeat: no-repeat;
+	background-size: cover;
 
 }
-
-.container-crear a{
-    text-decoration:none;
-
-
-}
-
-
-
 nav{
 	height:9.5vh;
-    	width: 100%;
-    	padding: 20px;
-    	background: #dac8bf;
+        	width: 100%;
+        	padding: 20px;
+        	background: #dac8bf;
   }
   nav.sticky{
 	padding: 15px 20px;
@@ -125,37 +102,24 @@ nav{
 
 .nav-content .nav-links .registrarse-btn a:hover  {
 	transform: translate3d(-8px, -8px, 0);
-}
+} 
 
-/* perfil//////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* <!-- ------------------------------------tarjetas---------------------------------------------------------------- --> */
+
 
 
 .container-card{
-	background: #fff;
-
-	justify-content: space-around;
-	align-items: center;
-	justify-content: center ;
-	position: center;
-	margin-top: 200px;
+  
+	margin-top: 120px;
 	width: 100%;
 }
-.box{
 
-	flex-wrap: wrap;
-    margin-top: 150px;
-	max-width: 1300px;
+
+.box{background-color:#fff;
+	max-width: 350px;
 	padding: 10px;
-    margin-left: 200px ;
-}
-
-.box img{
-	float: left;
-	margin-right: 50px;
-	max-width: 400px;
-	height: 400px;
-	z-index: index;
-	object-fit: cover;
+	border: 3px solid black;
+	margin: 10px auto;
 	border-radius: 1rem;
 	box-shadow: 5px 5px 0px #25282a;
 	position: relative;
@@ -164,67 +128,56 @@ nav{
 	transform-origin: bottom right;
 }
 
+.box:hover {
+	transform: scale(1.01) translate(-3px, -3px);
+	box-shadow: 8px 8px 0px #25282a;
+	z-index: 5; 
+}
+
+
+
+
+
 .box .text{
-
 	width: 100%;
-	padding-top: 17px;
-	min-width: 900px;
+	padding: 0 5px;
+	min-width: 300px;
 }
 
-.box .text h1{
-
-	color: #ac8c7d;
-
+.box .text h2 {
+	padding-top:10px;
+	padding-bottom: 20px;
+    margin: 2px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #ac8c7d;
 }
+
 
 
 .box .text p{
-font-weight: 400;
-font-size:small;
-margin-bottom: 10px;
-}
-.box .text p .telefono{
-    font-size: small;
-    margin-top: 20px;
-}
-
-
-.box .text p .localidad{
-font-size: small;
-margin-top: 10px;
+	
+	padding-bottom: 20px;
+	margin: 2px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #000000;
 }
 
-
-
-.box .text p .direccion{
-  font-size: small;
-     margin-top: 10px;
+.container-btn .boton{
+	width:fit-content;
+	margin-left: 511px;
+	display: flex;
+	flex-direction: row-reverse;
+	
+	justify-items: center ;
+	padding-top: 10px;
 }
-
-
-
-.box .text .redes li{
-
-    padding-right: 1em;
-    padding-top: 1em;
-    float: left;
-    list-style: none
-}
-
-.box .text .redes li a{
-    text-decoration: none;
-	color: #ac8c7d;
-}
-
-.box .text .boton  {
-    margin-top: 5em;
-    margin-left: 11em;
-}
-
-.box .text .boton a {
-    text-decoration: none;
+.container-btn .boton a {
     color: #ac8c7d;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0.2rem 1.2rem;
     border: 1px solid #ac8c7d;
     border-radius: 5px;
@@ -233,7 +186,7 @@ margin-top: 10px;
     transition: all 0.3s ease;
 }
 
-.box .text .boton a:hover {
+.container-btn .boton:hover a {
     color: #fff;
     background: #ac8c7d;
 }

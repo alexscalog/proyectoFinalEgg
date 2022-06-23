@@ -14,7 +14,7 @@
 
 <body>
 
-<header th:replace="fragmentos/header :: header"></header>
+<header th:replace="fragmentos/header-login-form :: header"></header>
 <!-- ////////////////////////////////////////-perfiles------------------------------------------------------ -->
 
 <div class="container-perfil" th:each="usuario : ${usuarios}">
@@ -23,22 +23,14 @@
 
             <div class="text">
                 <h2 th:text="${usuario.nombreUsuario}"></h2>
-                <h2 th:text="${usuario.apellidoUsuario}"> </h2>
+                <h2 th:text="${usuario.apellidoUsuario}"></h2>
                 <p class="telefono" th:text="${usuario.telefono}">
-                    Teléfono: 376 4123456
+                    Teléfono:
                 </p>
                 <p class="email" th:text="${usuario.email}"></p>
 
 
-                <div class="boton">
-                    <a th:href="@{/usuario/formulario/__${session.id}__}">EDITAR USUARIO</a>
 
-                </div>
-
-                <div class="boton">
-                    <a href="#">ELIMINAR USUARIO</a>
-
-                </div>
 
             </div>
 
@@ -46,9 +38,22 @@
     </div>
 </div>
 
+<div class="container-botones">
 
+    <div class="container-btn">
+        <div class="boton">
+            <a th:href="@{/usuario/formulario/__${session.id}__}">EDITAR USUARIO</a>
 
+        </div>
 
+        <div class="boton">
+            <a href="#">ELIMINAR USUARIO</a>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 

@@ -1,6 +1,9 @@
 package egg.proyectoFinal.entidades;
 
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.EAGER;
@@ -8,6 +11,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "producto")
+@SQLDelete(sql = "UPDATE producto SET producto_eliminado = true WHERE id = ?")
+
 public class Producto {
 
     @Id
@@ -32,16 +37,21 @@ public class Producto {
     @JoinColumn(name = "id_emprendimiento_producto", referencedColumnName = "id_emprendimiento")
     private Emprendimiento emprendimiento;
 
+
+    @Column(name = "producto_eliminado", nullable = false)
+    private boolean eliminado;
+
     public Producto() {
     }
 
-    public Producto(Long idProducto, String nombreProducto, String descripcionProducto, String categoria, String imagen, Emprendimiento emprendimiento) {
+    public Producto(Long idProducto, String nombreProducto, String descripcionProducto, String categoria, String imagen, Emprendimiento emprendimiento, boolean eliminado) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
         this.categoria = categoria;
         this.imagen = imagen;
         this.emprendimiento = emprendimiento;
+        this.eliminado = eliminado;
     }
 
     public Long getIdProducto() {
@@ -90,5 +100,17 @@ public class Producto {
 
     public void setEmprendimiento(Emprendimiento emprendimiento) {
         this.emprendimiento = emprendimiento;
+    }
+
+    public void setIdProducto(Long idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

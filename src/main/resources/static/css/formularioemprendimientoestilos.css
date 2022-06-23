@@ -115,14 +115,23 @@ nav{
 
 .nav-content .nav-links .registrarse-btn a:hover  {
 	transform: translate3d(-8px, -8px, 0);
-} 
+}
 
 
 #container{
-    margin-top: 190px;
-    margin-left: 200px;
-    
-    
+    width:70%;
+    margin-top:150px;
+    margin-left:220px;
+    background-color: #ffffffc7;
+
+    float: left;
+
+
+}
+#container h3{
+
+    margin-left: 30px;
+    padding-top: 10px;
 }
 
 
@@ -139,9 +148,9 @@ aside{
     float: left;
     width: 60%;
     height: 80%;
-    padding: 5px;
     margin-top: 0px;
     margin-bottom: 10px;
+    margin-left: 30px;
 }
 
 .formemp{
@@ -159,7 +168,7 @@ aside{
     top: 0px;
     left: 0px;
     height: 20px;
-    width: 60%;
+    width: 90%;
     border: 1px solid black;
     border-radius: 7px;
     font-size: 16px;
@@ -173,14 +182,14 @@ aside{
     top: 0px;
     left: 0px;
     height: 100px;
-    width: 60%;
+    width: 90%;
     border: 1px solid black;
     border-radius: 7px;
     font-size: 16px;
     padding: 10px;
     outline: none;
     background: none;
-    z-index: 1;
+
 }
 
 .file-select {
@@ -189,8 +198,9 @@ aside{
     width: 80%;
     margin-top: 10px;
     margin-bottom: 20px;
+    z-index: 0;
 }
-  
+
 .file-select::before {
     background-color: #dac8bf;
     border: 2px solid #ac8c7d;
@@ -211,14 +221,14 @@ aside{
 .file-select::marker{
     color: transparent;
 }
-  
+
 .file-select input[type="file"] {
     opacity: 0;
     width: 200px;
     height: 280px;
-    display: inline-block;    
+    display: inline-block;
 }
-  
+
 #src-file1::before {
     content: 'Subir un Logo';
 }
@@ -235,4 +245,3 @@ aside{
     font-size: 16px;
     font-family: 'Montserrat Alternates';
 }
-

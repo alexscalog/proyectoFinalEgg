@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="sub-contenedor2">
-            <div class="informacion">
+            <div class="informacion" sec:authorize="isAuthenticated()">
 
 
                 <a th:href="@{/producto/editar/__${producto.idProducto}__}"> <i class="fa-solid fa-pen-to-square icono-informacion"></i></a>
@@ -32,14 +32,17 @@
 
                 <div id="id01" class="modal">
 
-                    <form class="modal-content" th:action="@{/producto/listar-productos}">
+                    <form class="modal-content" th:action="@{/producto/borrar/__${producto.idProducto}__}" method="post">
                         <div class="container">
                             <h1>Confirmación</h1>
                             <p>¿Está seguro que desea eliminar este producto?</p>
 
                             <div class="clearfix">
-                                <button type="button"  onclick="document.getElementById('id01').style.display='none'" class="boton-contactar">Cancelar</button>
-                                <button type="button"  onclick="alert('producto eliminado')" class="boton-contactar">Eliminar</button>
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="boton-contactar">Cancelar</button>
+
+                                    <button type="submit" class="boton-contactar">Eliminar</button>
+
+
                             </div>
                         </div>
                     </form>

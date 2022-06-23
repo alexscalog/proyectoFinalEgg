@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Formulario Producto</title>
     <link rel="stylesheet" th:href="@{/css/formproductoestilo.css}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -15,64 +16,53 @@
 
 
 
-<div id="container">
 
 
+    <div id="container">
+        <h3>Registre un producto:</h3>
+        <section>
 
-    <div class="clearfix"></div>
+            <form class="formpro" th:action="@{/producto/crear}" th:object="${producto}" method="post" autocomplete="off"  enctype="multipart/form-data" >
+                <article class="article">
 
-    <section id="FormProduct">
-        <h3>Registrar un producto:</h3> <br>
+                    <input type="hidden" th:field="*{idProducto}">
 
-        <div class="clearfix"></div>
+                    <input type="hidden" id="emprendimiento" name="emprendimiento" th:value="${emprendimientoId}">
 
-        <form th:action="@{/producto/crear}" th:object="${producto}" method="post" autocomplete="off"  enctype="multipart/form-data">
-            <aside class="formPro">
+                    <div class="inputcontainer">
+                        <div class="file-select" id="src-file1">
+                            <label>Logo del emprendimiento</label> <br>
+                            <input type="file" name="imagenProducto"  accept="image/*">
+                            <br>
+                        </div>
+                    </div>
+                </article>
+                <aside>
+                    <div class="inputcontainer">
 
-                <input type="hidden" th:field="*{idProducto}">
+                        <label>Nombre del producto:</label> <br>
+                        <input type="text" id="NombreProducto" th:field="*{nombreProducto}" class="input" placeholder="Ingrese un nombre al producto">
+                        <br>
 
-                <input type="hidden" id="emprendimiento" name="emprendimiento" th:value="${emprendimientoId}">
+                    </div>
+                    <div class="inputcontainer">
+                        <label>Descripción del producto:</label> <br>
+                        <input Type="text" id="DescripciónProducto" th:field="*{descripcionProducto}" class="inputdesc" placeholder="Ingrese una breve descripción.">
+                        <br>
 
-                <div class="imputcontainer">
-                    <label>Nombre del producto:</label> <br>
-                    <input type="text" id="NombreProducto" th:field="*{nombreProducto}" class="input" placeholder="Ingrese un nombre al producto">
+                    </div>
+                    <div class="inputcontainer">
+                        <label>Categoria:</label> <br>
+                        <input type="text" id="categoriaProducto" th:field="*{categoria}" class="input" placeholder="¿A qué categoría pertenece?">
+                        <br>
+                    </div>
                     <br>
-
-
-              </div>
-
-                <div class="imputcontainer">
-                    <label>Descripción del producto:</label> <br>
-                    <input Type="text" id="DescripciónProducto" th:field="*{descripcionProducto}" class="inputdesc" placeholder="Ingrese una breve descripción.">
-                    <br>
-                </div>
-
-
-
-                <div class="imputcontainer">
-                    <label>Categoría</label> <br>
-                    <input type="text" id="CategoriaProducto" th:field="*{categoria}" class="input" placeholder="¿a que categoría pertenece?">
-                    <br>
-                </div>
-                <br>
-                <button th:text="${accion == 'crear' ? 'Crear' : 'Actualizar'}" type="submit"
-                        class="button"></button>
-
-            </aside>
-
-            <article class="Imagen">
-
-                <div class="file-select" id="src-file1" >
-                    <input type="file" name="imagenProducto"  accept="image/*">
-                </div>
-
-            </article>
-
-            <br>
-
-            <div class="clearfix"></div>
-        </form>
-    </section>
+                    <button th:text="${accion == 'crear' ? 'Crear' : 'Actualizar'}" type="submit"
+                            class="button"></button>
+                </aside>
+            </form>
+        </section>
+    </div>
 
 </div>
 </body>

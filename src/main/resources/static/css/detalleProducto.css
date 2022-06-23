@@ -8,13 +8,11 @@
 }
 
 nav{
-	position:absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 20px;
-	transition: all 0.4s ease;
-	background: #dac8bf;
+
+	height:9.5vh;
+    	width: 100%;
+    	padding: 20px;
+    	background: #dac8bf;
   }
   nav.sticky{
 	padding: 15px 20px;
@@ -144,7 +142,7 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 .informacion{
     position: absolute;
-    top: 60px;
+    top: 250px;
     right: 120px;
     display: flex;
     justify-content: flex-end;
