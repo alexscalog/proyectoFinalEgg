@@ -20,7 +20,7 @@
 
 <!-- ------------------------------------tarjetas---------------------------------------------------------------- -->
 
-<div class="container-card">
+<div class="container-card" id="container-buscador">
     <form th:action="@{/producto/productos-por-categoria}" method="get">
             <input type="text" name="categoria" id="categoria" th:value="${categoria}" placeholder="Buscar por categoría">
 

@@ -113,7 +113,21 @@ nav{
 	align-content:space-around;
 	position:center;
 }
+#container-buscador{
+text-align:right;
+width:90%;
+margin-right:20px;
+}
+#container-buscador input{
+height: 30px;
+width: 25%;
+border-radius:10px;
+}
 
+#container-buscador button:hover{
+color: #fff;
+background: #ac8c7d;
+}
 
 .box{
 	float: left;
