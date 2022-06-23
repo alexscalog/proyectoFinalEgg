@@ -1,3 +1,30 @@
+
+
+body{
+background-color: #f3ebe6
+
+}
+
+
+
+#container-buscador{
+text-align:right;
+width:90%;
+margin-right:20px;
+}
+#container-buscador input{
+height: 30px;
+width: 25%;
+border-radius:10px;
+}
+
+#container-buscador button:hover{
+color: #fff;
+background: #ac8c7d;
+}
+
+
+
 *  {
 	margin: 0;
 	padding: 0;
@@ -8,13 +35,10 @@
 
 
 nav{
-	position:absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 20px;
-	transition: all 0.4s ease;
-	background: #dac8bf;
+	height:9.5vh;
+    	width: 100%;
+    	padding: 20px;
+    	background: #dac8bf;
   }
   nav.sticky{
 	padding: 15px 20px;
@@ -100,41 +124,28 @@ nav{
 
 .nav-content .nav-links .registrarse-btn a:hover  {
 	transform: translate3d(-8px, -8px, 0);
-} 
+}
 
 /* <!-- ------------------------------------tarjetas---------------------------------------------------------------- --> */
 
 
 
 .container-card{
-    margin-right: 60px;
+    margin-inline: 135px;
 	margin-top: 120px;
-	width: 100%;
+
+	width: 90%;
 	align-content:space-around;
 	position:center;
 }
-#container-buscador{
-text-align:right;
-width:90%;
-margin-right:20px;
-}
-#container-buscador input{
-height: 30px;
-width: 25%;
-border-radius:10px;
-}
 
-#container-buscador button:hover{
-color: #fff;
-background: #ac8c7d;
-}
 
 .box{
 	float: left;
-	
-	
+
+
 	background-color:#fff;
-	max-width: 200px;
+	width: 200px;
 	height: 300px;
 	padding: 10px;
 	border: 3px solid black;
@@ -150,7 +161,7 @@ background: #ac8c7d;
 .box:hover {
 	transform: scale(1.01) translate(-3px, -3px);
 	box-shadow: 8px 8px 0px #25282a;
-	z-index: 5; 
+	z-index: 5;
 }
 
 
@@ -162,10 +173,21 @@ background: #ac8c7d;
 	padding: 5px;
 }
 
+
 .box .text{
 	width: 100%;
 	padding: 0 5px;
 	min-width: 90px;
+}
+
+
+.box .text h1{
+	margin: 2px;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: #ac8c7d;
+
 }
 
 .box .text h2 {
@@ -173,7 +195,8 @@ background: #ac8c7d;
     font-weight: 600;
     font-size: 20px;
     letter-spacing: 1px;
-    color: #ac8c7d;}
+    color: #ac8c7d;
+}
 
 .box .text h3{
 	margin: 2px;
@@ -183,14 +206,29 @@ background: #ac8c7d;
     color: #000000;
 }
 
-.box .text p{
+.box .text h4 {
 	margin: 2px;
-  font-weight: 300;
-  font-size: 13px;
-  letter-spacing: 1px;
-  color: #000000;
+	margin-left: 36px;
+    font-weight: 600;
+    font-size: 150px;
+    color: #ac8c7d;
 }
 
 
 
 
+.box .text p{
+width: 150px;
+
+padding: 2px 5px;
+white-space: nowrap;
+overflow: hidden;
+margin: 2px;
+font-weight: 300;
+font-size: 13px;
+letter-spacing: 1px;
+color: #000000;
+}
+.overflow-ellipsis {
+	text-overflow: ellipsis;
+  }

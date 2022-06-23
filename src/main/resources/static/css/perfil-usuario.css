@@ -1,0 +1,128 @@
+*  {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+body{
+	background-color: beige;
+}
+
+/* perfil//////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+.container-card{
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+	justify-content: center ;
+	flex-wrap: wrap;
+	margin-top: 200px;
+	width: 100%;
+}
+.box{
+    margin-top: 50px;
+	max-width: 1300px;
+	padding: 10px;
+    margin-left: 200px ;
+}
+
+.box img{
+	float: left;
+	margin-right: 50px;
+	max-width: 400px;
+	height: 400px;
+	display: block;
+	object-fit: cover;
+	border-radius: 1rem;
+	box-shadow: 5px 5px 0px #25282a;
+	position: relative;
+	transform: scale(1);
+	transition: 200ms cubic-bezier(0.11, -0.25, 0.7, 1.22);
+	transform-origin: bottom right;
+}
+
+.box .text{
+
+	width: 100%;
+	padding-top: 17px;
+	min-width: 900px;
+}
+
+.box .text h2{
+
+	color: rgb(99, 42, 42);
+margin-bottom: 10px;
+}
+
+
+.box .text p{
+font-weight: 400;
+font-size:small;
+margin-bottom: 10px;
+}
+.box .text p .telefono{
+    font-size: small;
+    margin-top: 20px;
+}
+
+
+.box .text p .localidad{
+font-size: small;
+margin-top: 10px;
+}
+
+
+
+.box .text p .direccion{
+  font-size: small;
+     margin-top: 10px;
+}
+
+
+.box .text .boton  {
+    margin-top: 5em;
+    margin-left: 11em;
+}
+
+.box .text .boton a {
+    text-decoration: none;
+    color: rgb(99, 42, 42);
+    font-size: 1.1rem;
+    padding: 0.2rem 1.2rem;
+    border: 1px solid rgb(99, 42, 42);
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.box .text .boton a:hover {
+    color: #fff;
+    background: rgb(99, 42, 42);
+}
+
+table{
+margin-top: 20px;
+}
+td, th{
+	border: solid 5px black;
+	border-radius: 10px;
+	background-color: #ac8c7d;
+	padding: 20px;
+}
+
+#imagen-avatar{
+	height: 350px;
+}
+.lista-emprendimientos{
+	text-align: center;
+	margin-top: 100px;
+}
+
+.listado{
+	margin: auto;
+	margin-top: 20px ;
+}

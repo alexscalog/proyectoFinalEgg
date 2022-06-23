@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Accesorios</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/2e3686342e.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a0ff895d56.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/detalleProducto.css}">
-    <link th:href="@{/css/productos-mostrar.css}" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -24,11 +24,32 @@
         </div>
         <div class="sub-contenedor2">
             <div class="informacion">
-                <a href="#"> <i id = "icono-informacion" class="fa-solid fa-info"></i></a>
+
+
+                <a th:href="@{/producto/editar/__${producto.idProducto}__}"> <i class="fa-solid fa-pen-to-square icono-informacion"></i></a>
+
+                <a href="#" onclick="document.getElementById('id01').style.display='block'"><i class="fa-solid fa-trash-can icono-informacion"></i> </a>
+
+                <div id="id01" class="modal">
+
+                    <form class="modal-content" th:action="@{/producto/listar-productos}">
+                        <div class="container">
+                            <h1>Confirmación</h1>
+                            <p>¿Está seguro que desea eliminar este producto?</p>
+
+                            <div class="clearfix">
+                                <button type="button"  onclick="document.getElementById('id01').style.display='none'" class="boton-contactar">Cancelar</button>
+                                <button type="button"  onclick="alert('producto eliminado')" class="boton-contactar">Eliminar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
 
             </div>
             <div class="subtitulos">
-                <h2 class = "titulo-producto"></h2>
+                <h2 class = "titulo-producto" th:text="${producto.nombreProducto}"></h2>
                 <h2 class="titulo-emprendimiento" th:text="${producto.emprendimiento.nombreEmprendimiento}"></h2>
             </div>
             <div class="descripcion">
@@ -37,7 +58,7 @@
             </div>
             <div class="contenedor-contactar">
                 <div class="boton-contactar">
-                    <a href="#">CONTACTAR</a>
+                    <a th:href="${producto.emprendimiento.instagram}">CONTACTAR</a>
 
                 </div>
             </div>

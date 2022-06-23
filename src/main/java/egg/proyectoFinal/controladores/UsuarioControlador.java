@@ -30,6 +30,21 @@ public class UsuarioControlador {
         this.usuarioServicio = usuarioServicio;
     }
 
+
+
+    @GetMapping("/perfil/{id}")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ModelAndView perfilUsuario(HttpServletRequest request, @PathVariable Long id, HttpSession session) {
+        ModelAndView mav = new ModelAndView("perfil-usuario");
+        Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
+
+        mav.addObject("usuarios", usuarioServicio.obtenerUsuarioPorId(id));
+        return mav;
+    }
+
+
     @GetMapping("/lista")
     //@PreAuthorize("hasRole('ADMIN')")
     public ModelAndView listarUsuarios(HttpServletRequest request) {
@@ -60,15 +75,15 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/formulario/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView traerUsuarioPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("usuario-formulario");
 
-        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+        //if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
 
 
         mav.addObject("usuario", usuarioServicio.obtenerUsuarioPorId(id));
-        mav.addObject("action", "actualizar");
+        mav.addObject("accion", "actualizar");
         return mav;
     }
 
@@ -91,9 +106,9 @@ public class UsuarioControlador {
     }
 
     @PostMapping("/actualizar")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public RedirectView actualizar(Usuario usuario, RedirectAttributes attributes) {
-        RedirectView redirect = new RedirectView("/usuario");
+        RedirectView redirect = new RedirectView("/usuario/perfil/"+usuario.getId());
 
         try {
             usuarioServicio.actualizarUsuario(usuario);
@@ -101,7 +116,7 @@ public class UsuarioControlador {
         } catch (IllegalArgumentException e) {
             attributes.addFlashAttribute("usuario", usuario);
             attributes.addFlashAttribute("excepcion", e.getMessage());
-            redirect.setUrl("/usuario/formulario");
+            redirect.setUrl("/usuario/usuario-formulario");
         }
             return redirect;
 

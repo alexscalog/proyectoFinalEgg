@@ -31,6 +31,8 @@
 
                 <input type="hidden" th:field="*{idProducto}">
 
+                <input type="hidden" id="emprendimiento" name="emprendimiento" th:value="${emprendimientoId}">
+
                 <div class="imputcontainer">
                     <label>Nombre del producto:</label> <br>
                     <input type="text" id="NombreProducto" th:field="*{nombreProducto}" class="input" placeholder="Ingrese un nombre al producto">
@@ -45,15 +47,7 @@
                     <br>
                 </div>
 
-                               <div class="imputcontainer">
-                                   <select th:field="*{emprendimiento}" id="emprendimiento" class="input">
-                                       <option selected value="">Emprendimiento</option>
-                                       <option th:each="emprendimiento : ${emprendimientos}" th:text="${emprendimiento.nombreEmprendimiento}"
-                                               th:value="${emprendimiento.idEmprendimiento}"></option>
-                                   </select>
-                                   <label for="emprendimiento">Elegir emprendimiento</label>
 
-                               </div>
 
                 <div class="imputcontainer">
                     <label>Categoría</label> <br>

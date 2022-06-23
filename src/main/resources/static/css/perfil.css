@@ -12,14 +12,10 @@ body{
 
 }
 nav{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 20px;
-	z-index: 1;
-	transition: all 0.4s ease;
-	background: #dac8bf;
+	height:9.5vh;
+    	width: 100%;
+    	padding: 20px;
+    	background: #dac8bf;
   }
   nav.sticky{
 	padding: 15px 20px;

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="productos-mostrar.css">
+
     <link th:href="@{/css/productos-mostrar.css}" rel="stylesheet" />
-    <link th:href="@{/css/footer.css}" rel="stylesheet" />
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
@@ -21,7 +21,7 @@
 <!-- ------------------------------------tarjetas---------------------------------------------------------------- -->
 
 <div class="container-card" id="container-buscador">
-    <form th:action="@{/producto/productos-por-categoria}" method="get">
+    <form th:action="@{/producto/productos-por-categoria}" method="get" autocomplete="off">
             <input type="text" name="categoria" id="categoria" th:value="${categoria}" placeholder="Buscar por categoría">
 
     <button type="submit" class="buscar-btn">Buscar</button>
@@ -32,7 +32,17 @@
 <div class="container-card">
 
 
-    </div>
+        <div class="box" sec:authorize="isAuthenticated()" th:if="${emprendimientoId != null}">
+
+            <div class="text"  >
+                <a th:href="@{/producto/formulario/__${emprendimientoId}__}"><h4> + </h4></a>
+                <h1>Crear Producto</h1>
+
+            </div>
+        </div>
+
+
+
    <div class="box" th:each="producto : ${productos}" >
         <a th:href="@{/producto/detalle/__${producto.idProducto}__}">
         <div class="heading">
@@ -41,19 +51,16 @@
             <div class="text">
                 <a href=""><h2 th:text="${producto.nombreProducto}"></h2></a>
                 <h3 th:text="${producto.emprendimiento.nombreEmprendimiento}"></h3>
-                <p th:text="${producto.descripcionProducto}"></p>
+                <p th:text="${producto.categoria}"></p>
+                <p th:text="${producto.descripcionProducto}" class="overflow-ellipsis"></p>
+
             </div>
 
         </div>
         </a>
     </div>
 
-    <div class="container-card"  sec:authorize="isAuthenticated()">
-        <div class="box"  >
-            <a th:href="@{/producto/formulario}">AGREGAR PRODUCTO</a>
 
-        </div>
-    </div>
 </div>
 </body>
 </html>

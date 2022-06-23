@@ -4,22 +4,32 @@
     box-sizing: border-box;
 }
 
+
+
 body{
-    background: white;
+    background-image: url(/img/fondo-login.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
     font-family: 'Montserrat Alternates';
 }
-
-
 
 
 nav{
 	position: fixed;
 	top: 0;
 	left: 0;
+	height:9.5vh;
 	width: 100%;
 	padding: 20px;
 	transition: all 0.4s ease;
 	background: #dac8bf;
+
+
+
+
   }
   nav.sticky{
 	padding: 15px 20px;

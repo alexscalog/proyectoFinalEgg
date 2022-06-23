@@ -6,12 +6,109 @@
     font-family: 'Montserrat Alternates', sans-serif;
     
 }
+
+nav{
+	position:absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	transition: all 0.4s ease;
+	background: #dac8bf;
+  }
+  nav.sticky{
+	padding: 15px 20px;
+	background: #ffffff;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  nav .nav-content{
+	height: 100%;
+	max-width: 1200px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  nav .logo a img{
+	width: 90px;
+  }
+  nav.sticky .logo a img{
+	color: rgb(0, 0, 0);
+  }
+  .nav-content .nav-links{
+	display: flex;
+  }
+  .nav-content .nav-links li{
+	list-style: none;
+	margin: 0 8px;
+  }
+   .nav-links li a{
+	text-decoration: none;
+	color: #000000;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 10px 4px;
+	transition: all 0.3s ease;
+  }
+   .nav-links li a:hover{
+	 color: #ac8c7d;
+   }
+   nav.sticky .nav-links li a{
+	 color: #fff;
+	 transition: all 0.4s ease;
+  }
+   nav.sticky .nav-links li a:hover{
+	color: #000000;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn {
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn a , .buscar-btn{
+    color: #ac8c7d;
+    font-size: 1rem;
+    padding: 0.2rem 1.2rem;
+    border: 1px solid #ac8c7d;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.nav-content .nav-links .iniciar-sesion-btn:hover a {
+    color: #fff;
+    background: #ac8c7d;
+}
+.nav-content .nav-links .registrarse-btn {
+	background: #000;
+	font-weight: 700;
+	padding: 0;
+	border-radius: 5px;
+}
+
+.nav-content .nav-links .registrarse-btn a{
+	display: block;
+	background: #a7a7a7;
+	padding: 0.1rem 1.1rem;
+	border: 1px solid #000;
+	border-radius: 5px;
+	transform: translate3d(-4px, -4px, 0);
+	transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.nav-content .nav-links .registrarse-btn a:hover  {
+	transform: translate3d(-8px, -8px, 0);
+}
+
 body{
 }
 .contenedor{
     display: flex;
 }
 .sub-contenedor1{
+    margin-top:100px;
     width: 50%;
     height: 90vh;
 }
@@ -39,20 +136,23 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     border-radius: 10px;
 }
 .sub-contenedor2{
+    margin-top:100px;
     padding: 20px;
     width: 50%;
     display: flex;
     flex-direction: column;
 }
 .informacion{
-    display: flex;
-    justify-content: flex-end;
-}
-#icono-informacion{
-    border: solid 2px #632a2a;
     position: absolute;
     top: 60px;
     right: 120px;
+    display: flex;
+    justify-content: flex-end;
+}
+.icono-informacion{
+    border: solid 2px #632a2a;
+
+
     padding: 15px;
     font-size: 20px;
     text-align: center;
@@ -133,4 +233,106 @@ top: 280px;
     border: solid 2px #632a2a;
     border-radius: 10px;
     
+}
+
+/*---------------------------------Mensaje de alerta eliminacion--------------------------------------*/
+
+* {box-sizing: border-box}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.container {
+  padding: 16px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+  height:20vh;
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+    width: 100%;
+  }
 }

@@ -62,7 +62,7 @@ public class ProductoControlador {
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (inputFlashMap != null) mav.addObject("exito", inputFlashMap.get("exito"));
-
+        mav.addObject("emprendimientoId", id);
         mav.addObject("productos", productoServicio.productosPorEmprendimiento(id));
         return mav;
     }
@@ -80,9 +80,9 @@ public class ProductoControlador {
     }
 
 
-    @GetMapping("/formulario")
+    @GetMapping("/formulario/{emprendimientoId}")
     //@PreAuthorize("hasAnyRole('ADMIN, USER')")
-    public ModelAndView formularioCreacion(HttpServletRequest request, HttpSession session) {
+    public ModelAndView formularioCreacion(HttpServletRequest request, HttpSession session, @PathVariable Long emprendimientoId) {
         ModelAndView mav = new ModelAndView("producto-formulario");
 
         Producto producto = new Producto();
@@ -96,17 +96,19 @@ public class ProductoControlador {
         } else {
             mav.addObject("producto", new Producto());
         }
-        mav.addObject("emprendimientos", emprendimientoServicio.listarEmprendimientos());
+        mav.addObject("emprendimientoId", emprendimientoId);
         mav.addObject("accion", "crear");
         return mav;
     }
 
-    @GetMapping("/formulario/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN, USER')")
+
+
+    @GetMapping("/editar/{id}")
+    //@PreAuthorize("hasAnyRole('ADMIN, USER')")
     public ModelAndView traerProductoPorId(@PathVariable Long id, HttpSession session) {
         ModelAndView mav = new ModelAndView("producto-formulario");
 
-        if (!session.getId().equals(id)) return new ModelAndView("redirect:/");
+
 
         mav.addObject("producto", productoServicio.obtenerProductoPorId(id));
         mav.addObject("accion", "actualizar");

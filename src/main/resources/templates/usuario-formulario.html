@@ -10,27 +10,48 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-6">
-                <form th:action="@{/usuario/__${action}__}" th:object="${usuario}" method="post" autocomplete="off"
+                <form th:action="@{/usuario/__${accion}__}" th:object="${usuario}" method="post" autocomplete="off"
                       class="needs-validation" novalidate>
-                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{id}" id="id">
+
+                    <div class="">
+                        <input type="text" th:field="*{nombreUsuario}" id="nombreUsuario" class="form-control"
+                               placeholder="Nombre de usuario" required>
+                        <label for="nombreUsuario">Nombre</label>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="">
+                        <input type="text" th:field="*{apellidoUsuario}" id="apellidoUsuario" class="form-control"
+                               placeholder="Apellido" required>
+                        <label for="apellidoUsuario">Apellido</label>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="">
+                        <input type="tel" th:field="*{telefono}" id="telefono" class="form-control"
+                               placeholder="Telefono" required>
+                        <label for="telefono">Teléfono</label>
+                        <div class="invalid-feedback"></div>
+                    </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" th:field="*{email}" id="email" class="form-control" placeholder="Email"
                                required>
                         <label for="email">Email</label>
-                        <div class="invalid-feedback">Email is required</div>
+
                     </div>
 
-                    <div class="form-floating mb-3">
+                    <div class="">
                         <input type="password" th:field="*{contrasenia}" id="contrasenia" class="form-control"
                                placeholder="Password" required>
                         <label for="contrasenia">Contraseña</label>
-                        <div class="invalid-feedback">Password is required</div>
+
                     </div>
 
 
 
-                    <button th:text="${action == 'crear' ? 'crear' : 'actualizar'}" type="submit"
+                    <button th:text="${accion == 'crear' ? 'Crear' : 'Actualizar'}" type="submit"
                             class="btn btn-primary"></button>
                 </form>
             </div>
