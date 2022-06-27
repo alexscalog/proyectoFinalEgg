@@ -18,13 +18,7 @@
 <header th:replace="fragmentos/header :: header"></header>
 
 <div class="col">
-    <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
 
-    <div th:if="${emprendimientos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
-        Cree un emprendimiento.
-        <a th:href="@{/emprendimiento/formulario}" class="alert-link">Crear emprendimiento.</a>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
 <div class="container-perfil" th:each="emprendimiento : ${emprendimientos}">
     <div class="box">

@@ -20,18 +20,16 @@
 
 
 
-<div class="container-crear" >
-    <a th:href="@{/emprendimiento/formulario}" ><h3>Crear Emprendimiento</h3></a>
 
-</div>
 
 <div class="col">
     <div th:if="${exito}" th:text="${exito}" class="alert alert-success" role="alert"></div>
 
-    <div th:if="${misemprendimientos.isEmpty()}" class="alert alert-info alert-dismissible fade show" role="alert">
-        Cree un emprendimiento.
-        <a th:href="@{/emprendimiento/formulario}" class="alert-link">Crear emprendimiento.</a>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div th:if="${misemprendimientos.isEmpty()}" >
+        <div class="container-crear" >
+            <a th:href="@{/emprendimiento/formulario}" ><h3>Crear Emprendimiento</h3></a>
+
+        </div>
     </div>
 
     <div class="box" sec:authorize="isAuthenticated()" th:if="${emprendimientoId != null}">
